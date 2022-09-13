@@ -41,10 +41,10 @@ export default class Dashboard extends Component {
                     <LineChartComp />
                 </div>
                 <div className='row'>
-                    <div className="col-12 ">
+                    <div className="col-12 col-lg-7">
                         <TopSellingComp />
                     </div>
-                    <div className="col">
+                    <div className="col-12 col-lg-5">
                         <PieChartComp />
                     </div>
                 </div>

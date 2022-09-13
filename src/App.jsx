@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderComp from './components/shared/HeaderComp'
 import routes from './app/routes'
+import { Toaster } from 'react-hot-toast'
 import { useRoutes } from 'react-router-dom'
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
   return (
     <div>
       <HeaderComp />
-      <div>
+      <Toaster position='top-right' />
+      <div >
         {showRoutes}
       </div>
     </div>

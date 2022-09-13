@@ -8,6 +8,8 @@ import Dashboard from '../components/admin-page/dashboard/Dashboard'
 import Orders from '../components/admin-page/orders/OrderList'
 import Products from '../components/admin-page/products/ProductList'
 
+import PrivateRoute from './../components/shared/PrivateRoute';
+
 const routes=[
     {
         path: '/',
@@ -46,5 +48,15 @@ const routes=[
     },
 ]
 
+const authCheck = routes => routes.map(route => {
+	if (route?.auth) {
+		route.element = <PrivateRoute>{route.element}</PrivateRoute>
+	}
+	if (route?.children) {
+		route.children = authCheck(route.children)
+	}
+	return route
+})
 
-export default routes
+
+export default authCheck(routes)
