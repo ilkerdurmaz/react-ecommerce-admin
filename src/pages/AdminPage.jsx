@@ -29,10 +29,10 @@ const AdminPage = () => {
 
             <div className='row'>
                 <div className='col-12 col-md-3 col-xl-2  p-2'>
-                    <ul class=" bg-dark bg-gradient text-white rounded">
-                        <li class="py-2"><NavLink to="/admin-page">Dashboard</NavLink></li>
-                        <li class="py-2"><NavLink to="/admin-page/orders">Orders</NavLink></li>
-                        <li class="py-2"><NavLink to="/admin-page/products">Products</NavLink></li>
+                    <ul className=" bg-dark bg-gradient text-white rounded">
+                        <li className="py-2"><NavLink to="/admin-page">Dashboard</NavLink></li>
+                        <li className="py-2"><NavLink to="/admin-page/orders">Orders</NavLink></li>
+                        <li className="py-2"><NavLink to="/admin-page/products">Products</NavLink></li>
                     </ul>
                 </div>
 
