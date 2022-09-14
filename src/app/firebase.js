@@ -70,3 +70,14 @@ export const addProduct = async (data)=>{
   }
 }
 
+export const updateProduct = async (product,id)=>{
+  console.log("firebase içindeyim",product.id)
+  try{
+    const result=await setDoc(doc(db, 'products', id),product)
+    console.log(result)
+  }
+  catch(err){
+    console.log(err)
+    toast.error(err.code)
+  }
+}
