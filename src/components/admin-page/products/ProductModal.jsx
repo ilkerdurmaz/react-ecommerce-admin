@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 
-import { addProduct, updateProduct } from '../../../app/firebase'
+import { addProduct, updateProduct, deleteProduct } from '../../../app/firebase'
 
 export default class AddProductModal extends Component {
     constructor(props) {
@@ -13,7 +13,6 @@ export default class AddProductModal extends Component {
             categories: ["Others", "Category-2", "Category-3", "Category-4", "Category-5"],
         }
     }
-
 
     submitHandler = async (e) => {
         e.preventDefault();
@@ -27,13 +26,16 @@ export default class AddProductModal extends Component {
             price: e.target[7].value,
             rating: 0
         }
-
         if (this.props.isUpdate)
             await updateProduct(productData, this.props.selectedProduct.id)
         else
             await addProduct(productData)
-
         this.props.handleClose();
+    }
+
+    deleteHandler = async () => {
+        await deleteProduct(this.props.selectedProduct.id)
+        this.props.handleClose()
     }
 
     render() {
@@ -80,7 +82,6 @@ export default class AddProductModal extends Component {
                                     </FloatingLabel>
 
                                     <div className='row'>
-
                                         <div className="col-12 col-sm-5">
                                             <FloatingLabel controlId="floatingSelect" label="Category" className=''>
                                                 <Form.Select size="sm" name='category' defaultValue={this.props.isUpdate ? this.props.selectedProduct.category : ""}>
@@ -103,13 +104,17 @@ export default class AddProductModal extends Component {
                                             </FloatingLabel>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" type='submit'>
-                                Add Product
+                        <Modal.Footer className=' justify-content-between'>
+
+                            <Button variant="danger" onClick={this.deleteHandler}>
+                                Delete Product
+                            </Button>
+
+                            <Button variant={this.props.isUpdate ? 'warning' : 'primary'} type='submit'>
+                                {this.props.isUpdate ? 'Update Product' : 'Add Product'}
                             </Button>
                         </Modal.Footer>
                     </Form>

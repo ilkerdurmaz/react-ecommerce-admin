@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore,collection,doc,setDoc,addDoc, onSnapshot   } from "firebase/firestore";
+import { getFirestore,collection,doc,setDoc,addDoc,deleteDoc, onSnapshot} from "firebase/firestore";
 
 import { getAuth,signOut,onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
 import toast from 'react-hot-toast'
@@ -62,22 +62,26 @@ export const logout= async ()=>{
 }
 
 export const addProduct = async (data)=>{
-  try{
-    const result=await addDoc(collection(db,'products'),data)
-  }
+  try{await addDoc(collection(db,'products'),data)
+  toast.success("Successfully added")}
   catch(err){
     toast.error(err.code)
   }
 }
 
 export const updateProduct = async (product,id)=>{
-  console.log("firebase içindeyim",product.id)
-  try{
-    const result=await setDoc(doc(db, 'products', id),product)
-    console.log(result)
-  }
+  try{await setDoc(doc(db, 'products', id),product)
+  toast.success("Successfully updated")}
   catch(err){
-    console.log(err)
     toast.error(err.code)
   }
+}
+
+export const deleteProduct = async (id)=>{
+  try{await deleteDoc(doc(db, "products", id))
+    toast.success("Successfully deleted")
+  }
+  catch(err){
+    toast.error(err.code)
+}
 }

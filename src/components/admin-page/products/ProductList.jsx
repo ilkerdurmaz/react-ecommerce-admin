@@ -96,7 +96,7 @@ class ProductList extends Component {
                                     this.props.productList.map((product) => {
                                         return (
                                             <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
-                                                <td><ProductImg width='50px' /></td>
+                                                <td><ProductImg width='50px' src={product.imgUrl} /></td>
                                                 <td>{product.name}</td>
                                                 <td>{product.price}</td>
                                                 <td>{product.stock}</td>
