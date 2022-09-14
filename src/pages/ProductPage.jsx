@@ -16,13 +16,13 @@ const ProductPage = () => {
 
     function addProductToCart(e) {
         e.preventDefault()
-        console.log(e.target.quantity.value)
         dispatch(addToCart({
             id: product.id,
             name: product.name,
             brand: product.brand,
             quantity: count,
-            price: product.price
+            price: product.price,
+            imgUrl: product.imgUrl
         }))
     }
 
@@ -46,7 +46,6 @@ const ProductPage = () => {
                         <p className="card-text"><small className="text-muted">{product.description}</small></p>
                         <p className="card-text">₺ {product.price}</p>
                     </div>
-
                     <form className='d-flex justify-content-between p-2' onSubmit={addProductToCart}>
                         <div className="input-group input-group-sm m-1" style={{ width: "6rem" }}>
                             <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count - 1)}>-</button>
@@ -58,7 +57,6 @@ const ProductPage = () => {
                         <button className='btn btn-dark p-1 m-1' type='submit'>
                             <BsFillCartPlusFill size={28} /></button>
                     </form>
-
                 </div>
             </div>
         </div> : <div className="spinner-grow" style={{ width: "10rem", height: "10rem" }} role="status">

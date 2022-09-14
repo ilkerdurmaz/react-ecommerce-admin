@@ -84,3 +84,14 @@ export const deleteProduct = async (id)=>{
     toast.error(err.code)
 }
 }
+
+export const addOrder = async (order)=>{
+  try{
+    await addDoc(collection(db,'orders'),order)
+  toast.success("Order placed successfully")
+}
+  catch(err){
+    toast.error(err.code)
+  }
+
+}

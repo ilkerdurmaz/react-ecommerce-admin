@@ -78,38 +78,36 @@ class ProductList extends Component {
                     isUpdate={this.state.isUpdate}
                 />
 
-                <ul>
-                    <div className="table-responsive">
+                <div className="table-responsive">
+                    <table className="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.props.productList.map((product) => {
+                                    return (
+                                        <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
+                                            <td><ProductImg width='50px' src={product.imgUrl} /></td>
+                                            <td>{product.name}</td>
+                                            <td>{product.price}</td>
+                                            <td>{product.stock}</td>
+                                            <td>{product.rating}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
 
-                        <table className="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Stock</th>
-                                    <th scope="col">Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.props.productList.map((product) => {
-                                        return (
-                                            <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
-                                                <td><ProductImg width='50px' src={product.imgUrl} /></td>
-                                                <td>{product.name}</td>
-                                                <td>{product.price}</td>
-                                                <td>{product.stock}</td>
-                                                <td>{product.rating}</td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
 
-                </ul>
             </div>
         )
     }
