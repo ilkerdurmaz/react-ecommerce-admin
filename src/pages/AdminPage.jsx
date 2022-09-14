@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 
 import { logout } from '../app/firebase'
@@ -9,14 +9,14 @@ const AdminPage = () => {
     const navigate = useNavigate()
 
     const handleLogout = async () => {
-        const response = await logout();
+        await logout();
         navigate('/admin', {
             replace: true,
         })
     }
 
     return (
-        <div className='container fluid mt-3 border rounded shadow'>
+        <div className='container mt-3 border rounded shadow'>
 
             <div className='row'>
                 <div className='d-flex justify-content-between bg-dark bg-gradient text-white rounded-top p-2'>
