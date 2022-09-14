@@ -1,22 +1,32 @@
 import React, { Component } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
-import AddProductModal from './AddProductModal';
+import ProductModal from './ProductModal';
+import { connect } from 'react-redux';
+import ProductImg from './../../shared/ProductImg';
 
 
-export default class ProductList extends Component {
+class ProductList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             show: false,
+            isUpdate: false,
+            selectedProduct: null
         }
     }
-
 
     handleClose = () => this.setState({ show: false })
 
     openModal = () => {
-        this.setState({ show: true })
+        this.setState({ show: true, isUpdate: false })
+    }
+
+    handleUpdate = (product) => {
+        if (product !== null) {
+            this.setState({ selectedProduct: product })
+            this.setState({ show: true, isUpdate: true })
+        }
     }
 
     selectedCategory = (value) => {
@@ -60,11 +70,56 @@ export default class ProductList extends Component {
                     </div>
                 </div>
 
-                <AddProductModal
+                <ProductModal
+                    selectedProduct={this.state.selectedProduct}
                     show={this.state.show}
                     handleClose={this.handleClose}
+                    productList={this.props.productList}
+                    isUpdate={this.state.isUpdate}
                 />
+
+                <ul>
+                    <div className="table-responsive">
+
+                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.props.productList.map((product) => {
+                                        return (
+                                            <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
+                                                <td><ProductImg width='50px' /></td>
+                                                <td>{product.name}</td>
+                                                <td>{product.price}</td>
+                                                <td>{product.stock}</td>
+                                                <td>{product.rating}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </ul>
             </div>
         )
     }
 }
+
+
+
+const mapStateToProps = (state) => ({
+    productList: state.product.list
+});
+
+
+export default connect(mapStateToProps)(ProductList);
