@@ -5,6 +5,7 @@ import { getAuth,signOut,onAuthStateChanged, signInWithEmailAndPassword } from "
 import toast from 'react-hot-toast'
 import {store} from './store/store'
 import {loginHandle,logoutHandle} from './store/auth'
+import {clearCart} from './store/cart'
 import {setProducts} from './store/product'
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -88,10 +89,10 @@ export const deleteProduct = async (id)=>{
 export const addOrder = async (order)=>{
   try{
     await addDoc(collection(db,'orders'),order)
-  toast.success("Order placed successfully")
+    toast.success("Order placed successfully")
+    store.dispatch(clearCart())
 }
   catch(err){
     toast.error(err.code)
   }
-
 }

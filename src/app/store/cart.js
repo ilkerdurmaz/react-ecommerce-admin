@@ -21,10 +21,14 @@ export const cart = createSlice({
             updateCart:(state,action)=>{
                 state.cart=action.payload;
                 localStorage.setItem("cart",JSON.stringify(state.cart));
+            },
+            clearCart:(state)=>{
+                state.cart=[]
+                localStorage.setItem("cart",JSON.stringify(state.cart))
             }
         },  
     }
 )
 
-export const {addToCart,updateCart} = cart.actions
+export const {addToCart,updateCart,clearCart} = cart.actions
 export default cart.reducer

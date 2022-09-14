@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { MdDeleteForever } from 'react-icons/md'
 import { updateCart } from '../app/store/cart';
 import { addOrder } from '../app/firebase';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,6 +13,7 @@ const CartPage = () => {
     const cart = useSelector(state => state.cart.cart)
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0)
+    const navigate = useNavigate()
 
 
     const placeOrder = async () => {
@@ -27,7 +29,10 @@ const CartPage = () => {
                 cost: item.quantity * item.price,
             }
         })
-        addOrder(order);
+        await addOrder(order);
+        navigate('/my-orders', {
+            replace: true,
+        })
     }
 
     const deleteFromCart = (id) => {
