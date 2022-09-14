@@ -108,11 +108,11 @@ export default class AddProductModal extends Component {
                             </div>
                         </Modal.Body>
                         <Modal.Footer className=' justify-content-between'>
-
-                            <Button variant="danger" onClick={this.deleteHandler}>
-                                Delete Product
-                            </Button>
-
+                            {
+                                this.props.isUpdate && <Button variant="danger" onClick={this.deleteHandler}>
+                                    Delete Product
+                                </Button>
+                            }
                             <Button variant={this.props.isUpdate ? 'warning' : 'primary'} type='submit'>
                                 {this.props.isUpdate ? 'Update Product' : 'Add Product'}
                             </Button>

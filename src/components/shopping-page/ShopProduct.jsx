@@ -2,6 +2,7 @@ import React from 'react'
 import { BsFillCartPlusFill } from 'react-icons/bs'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../app/store/cart'
+import { NavLink } from 'react-router-dom'
 
 
 const ShopProduct = ({ product }) => {
@@ -22,7 +23,9 @@ const ShopProduct = ({ product }) => {
             <img src={product.imgUrl} className="img-fluid rounded img-thunb" alt={product.name} />
             <div className='p-2 mt-auto border-top border-'>
                 <h5>{product.brand}</h5>
-                <small>{product.name}</small>
+
+                <NavLink to={`/${product.id}`}><small>{product.name}</small></NavLink>
+
             </div>
             <div className="d-flex p-2 justify-content-between align-items-center">
                 <small>₺ {product.price}</small>

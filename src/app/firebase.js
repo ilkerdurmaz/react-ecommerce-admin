@@ -34,7 +34,6 @@ onAuthStateChanged(auth, (user) => {
 });
 
 onSnapshot(collection(db,'products'),doc=>{
-
   const products=doc.docs.reduce((products,product)=>[...products,{...product.data(),id:product.id}],[])
   store.dispatch(setProducts(products))
   })

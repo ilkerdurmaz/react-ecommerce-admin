@@ -4,6 +4,8 @@ import CartPage from '../pages/CartPage'
 import LoginPage from '../pages/LoginPage'
 import AdminPage from '../pages/AdminPage'
 
+import ProductPage from '../pages/ProductPage'
+
 import Dashboard from '../components/admin-page/dashboard/Dashboard'
 import Orders from '../components/admin-page/orders/OrderList'
 import Products from '../components/admin-page/products/ProductList'
@@ -26,6 +28,10 @@ const routes=[
     {
         path: '/admin',
         element:<LoginPage />,
+    },
+    {
+        path: '/:id',
+        element:<ProductPage />,
     },
     {
         path: '/admin-page',
