@@ -4,10 +4,8 @@ import ProductImg from './../components/shared/ProductImg';
 import { NavLink } from 'react-router-dom'
 import { MdDeleteForever } from 'react-icons/md'
 import { updateCart } from '../app/store/cart';
-import { addOrder } from '../app/firebase';
+import { placeOrder } from '../app/firebase';
 import { useNavigate } from 'react-router-dom';
-
-
 
 const CartPage = () => {
     const cart = useSelector(state => state.cart.cart)
@@ -15,9 +13,18 @@ const CartPage = () => {
     const [total, setTotal] = useState(0)
     const navigate = useNavigate()
 
+    function getOwnerId() {
+        let id = localStorage.getItem('orderOwnerId')
+        if (!id) {
+            id = Date.now() + '-' + Math.random()
+            localStorage.setItem('orderOwnerId', id)
+        }
+        return id
+    }
 
-    const placeOrder = async () => {
+    const placeOrderHandler = async () => {
         const order = {
+            id: getOwnerId(),
             timeStamp: Date.now(),
             status: "new",
             items: {}
@@ -29,7 +36,7 @@ const CartPage = () => {
                 cost: item.quantity * item.price,
             }
         })
-        await addOrder(order);
+        await placeOrder(order);
         navigate('/my-orders', {
             replace: true,
         })
@@ -93,7 +100,7 @@ const CartPage = () => {
                         </div>
                         <div className="card-body">
                             <p className="card-text">₺{total}</p>
-                            <button className="btn btn-primary" onClick={placeOrder}
+                            <button className="btn btn-primary" onClick={placeOrderHandler}
                                 disabled={!(cart.length > 0)}>Place Order</button>
                         </div>
                     </div>

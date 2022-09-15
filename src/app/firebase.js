@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore,collection,doc,setDoc,addDoc,deleteDoc, onSnapshot} from "firebase/firestore";
+import { getFirestore,collection,doc,setDoc,addDoc,deleteDoc,getDocs, onSnapshot,query,where} from "firebase/firestore";
 
 import { getAuth,signOut,onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"
 import toast from 'react-hot-toast'
@@ -7,6 +7,7 @@ import {store} from './store/store'
 import {loginHandle,logoutHandle} from './store/auth'
 import {clearCart} from './store/cart'
 import {setProducts} from './store/product'
+import { setOrders } from "./store/orders";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -86,12 +87,29 @@ export const deleteProduct = async (id)=>{
 }
 }
 
-export const addOrder = async (order)=>{
+export const placeOrder = async (order)=>{
   try{
     await addDoc(collection(db,'orders'),order)
-    toast.success("Order placed successfully")
+
     store.dispatch(clearCart())
+    toast.success("Order placed successfully")
 }
+  catch(err){
+    toast.error(err.code)
+  }
+}
+
+export const getMyOrders = async (ownerId)=>{
+  const q=query(collection(db,'orders'),where("id","==",ownerId))
+  try{
+    const querySnapshot = await getDocs(q)
+    const orders=[]
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      orders.push({fireId:doc.id,data:doc.data()})
+    });
+    store.dispatch(setOrders(orders))
+  }
   catch(err){
     toast.error(err.code)
   }
