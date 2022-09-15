@@ -114,3 +114,27 @@ export const getMyOrders = async (ownerId)=>{
     toast.error(err.code)
   }
 }
+
+export const getAllOrders = async ()=>{
+  let orders = []
+  try{
+    const querySnapshot = await getDocs(collection(db, "orders"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      orders.push({fireId:doc.id,data:doc.data()})
+    });
+    return orders;
+  }
+  catch(err){
+    toast.error(err.code)
+  }
+}
+
+export const updateOrder = async (order,id)=>{
+  try{
+    await setDoc(doc(db, 'orders', id),order)
+  toast.success("Order Delivered")}
+  catch(err){
+    toast.error(err.code)
+  }
+}

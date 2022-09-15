@@ -57,7 +57,6 @@ const MyOrder = ({ order }) => {
                     </table>
                 </div>
             </div>
-
         </div>
     )
 }

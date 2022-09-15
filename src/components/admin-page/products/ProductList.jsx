@@ -77,47 +77,44 @@ class ProductList extends Component {
                     productList={this.props.productList}
                     isUpdate={this.state.isUpdate}
                 />
-
-                <div className="table-responsive">
-                    <table className="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Image</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.props.productList.map((product) => {
-                                    return (
-                                        <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
-                                            <td><ProductImg width='50px' src={product.imgUrl} /></td>
-                                            <td>{product.name}</td>
-                                            <td>{product.price}</td>
-                                            <td>{product.stock}</td>
-                                            <td>{product.rating}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                <div className="container border rounded mt-2">
+                    <div className="table-responsive">
+                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Product</th>
+                                    <th scope="col" className='text-center'>Price</th>
+                                    <th scope="col" className='text-center'>Stock</th>
+                                    <th scope="col" className='text-center'>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.props.productList.map((product) => {
+                                        return (
+                                            <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
+                                                <td><ProductImg width='50px' src={product.imgUrl} /></td>
+                                                <td><div className='d-flex flex-column small'><strong>{product.brand}</strong>{product.name}</div></td>
+                                                <td className='text-center'>{product.price}</td>
+                                                <td className='text-center'>{product.stock}</td>
+                                                <td className='text-center'>✩✩✩✩✩</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
 
             </div>
         )
     }
 }
 
-
-
 const mapStateToProps = (state) => ({
     productList: state.product.list
 });
-
 
 export default connect(mapStateToProps)(ProductList);
