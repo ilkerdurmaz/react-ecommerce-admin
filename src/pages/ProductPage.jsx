@@ -5,6 +5,9 @@ import { addToCart } from '../app/store/cart';
 import { useDispatch } from 'react-redux';
 
 import { BsFillCartPlusFill } from 'react-icons/bs'
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import Rating from 'react-rating'
+import { calculateRating } from '../app/utils';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -13,6 +16,7 @@ const ProductPage = () => {
 
     const dispatch = useDispatch()
     const [count, setCount] = useState(1)
+
 
     function addProductToCart(e) {
         e.preventDefault()
@@ -45,18 +49,26 @@ const ProductPage = () => {
                         <p className="card-text">{product.name}</p>
                         <p className="card-text"><small className="text-muted">{product.description}</small></p>
                         <p className="card-text">₺ {product.price}</p>
+                        <Rating
+                            emptySymbol={<AiOutlineStar size={18} />}
+                            fullSymbol={<AiFillStar size={18} />}
+                            readonly={true}
+                            initialRating={calculateRating(product.rating)}
+                        />
+
+                        <form className='d-flex justify-content-between p-2' onSubmit={addProductToCart}>
+                            <div className="input-group input-group-sm m-1" style={{ width: "6rem" }}>
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count - 1)}>-</button>
+
+                                <input name="quantity" type="text" className="form-control form-control-sm" value={count} onChange={(e) => setCount(e.target.value)} />
+
+                                <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count + 1)}>+</button>
+                            </div>
+                            <button className='btn btn-dark p-1 m-1' type='submit'>
+                                <BsFillCartPlusFill size={28} /></button>
+                        </form>
                     </div>
-                    <form className='d-flex justify-content-between p-2' onSubmit={addProductToCart}>
-                        <div className="input-group input-group-sm m-1" style={{ width: "6rem" }}>
-                            <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count - 1)}>-</button>
 
-                            <input name="quantity" type="text" className="form-control form-control-sm" value={count} onChange={(e) => setCount(e.target.value)} />
-
-                            <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count + 1)}>+</button>
-                        </div>
-                        <button className='btn btn-dark p-1 m-1' type='submit'>
-                            <BsFillCartPlusFill size={28} /></button>
-                    </form>
                 </div>
             </div>
         </div> : <div className="spinner-grow" style={{ width: "10rem", height: "10rem" }} role="status">

@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProductImg from './../shared/ProductImg';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import RatingModal from './RatingModal';
+
 
 const MyOrder = ({ order }) => {
     const products = useSelector(state => state.product.list)
     const items = Object.values(order.data.items)
     const totalCost = items.reduce((totalCost, item) => totalCost + item.cost, 0)
     const orderTime = new Date(order.data.timeStamp)
+    const [show, setShow] = useState(false)
+    const productList = []
+
+    function handleClose() {
+        setShow(false)
+    }
 
     return (
         <div className='card my-2'>
@@ -24,7 +32,7 @@ const MyOrder = ({ order }) => {
                                 <th scope="col" className='px-0'>Product</th>
                                 <th scope="col" className='text-center'>Pieces</th>
                                 <th scope="col" className='text-center'>Cost</th>
-                                <th scope="col" className='text-center'>Rating</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +40,7 @@ const MyOrder = ({ order }) => {
 
                                 items.map((item) => {
                                     const product = products.find(product => product.id === item.productId)
+                                    productList.push(product);
                                     return (
                                         <tr key={item.productId}>
                                             <td><ProductImg src={product.imgUrl} width={"64px"} /></td>
@@ -47,8 +56,6 @@ const MyOrder = ({ order }) => {
 
                                             <td className='text-center'>₺{item.cost}</td>
 
-                                            <td className='text-center'>✩✩✩✩✩</td>
-
                                         </tr>
                                     )
                                 })
@@ -57,6 +64,10 @@ const MyOrder = ({ order }) => {
                     </table>
                 </div>
             </div>
+            <div className="card-footer d-flex ">
+                <button onClick={() => setShow(true)} className='btn btn-secondary ms-auto' disabled={order.data.status === "closed" || order.data.status === "new"}>rate products</button>
+            </div>
+            <RatingModal show={show} handleClose={handleClose} products={productList} order={order} />
         </div>
     )
 }

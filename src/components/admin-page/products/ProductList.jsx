@@ -3,7 +3,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ProductModal from './ProductModal';
 import { connect } from 'react-redux';
 import ProductImg from './../../shared/ProductImg';
-
+import Rating from 'react-rating'
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 
 class ProductList extends Component {
 
@@ -35,6 +36,9 @@ class ProductList extends Component {
 
     selectedSorting = (value) => {
         console.log(value)
+    }
+
+    componentDidMount() {
     }
 
     render() {
@@ -70,13 +74,15 @@ class ProductList extends Component {
                     </div>
                 </div>
 
-                <ProductModal
-                    selectedProduct={this.state.selectedProduct}
-                    show={this.state.show}
-                    handleClose={this.handleClose}
-                    productList={this.props.productList}
-                    isUpdate={this.state.isUpdate}
-                />
+                {
+                    this.state.show && <ProductModal
+                        selectedProduct={this.state.selectedProduct}
+                        show={this.state.show}
+                        handleClose={this.handleClose}
+                        productList={this.props.productList}
+                        isUpdate={this.state.isUpdate}
+                    />
+                }
                 <div className="container border rounded mt-2">
                     <div className="table-responsive">
                         <table className="table table-hover">
@@ -98,7 +104,14 @@ class ProductList extends Component {
                                                 <td><div className='d-flex flex-column small'><strong>{product.brand}</strong>{product.name}</div></td>
                                                 <td className='text-center'>{product.price}</td>
                                                 <td className='text-center'>{product.stock}</td>
-                                                <td className='text-center'>✩✩✩✩✩</td>
+                                                <td className='text-center'>
+                                                    <Rating
+                                                        emptySymbol={<AiOutlineStar size={18} />}
+                                                        fullSymbol={<AiFillStar size={18} />}
+                                                        readonly={true}
+                                                        initialRating={product.rating}
+                                                    />
+                                                </td>
                                             </tr>
                                         )
                                     })

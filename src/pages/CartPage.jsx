@@ -34,6 +34,7 @@ const CartPage = () => {
                 productId: item.id,
                 quantity: item.quantity,
                 cost: item.quantity * item.price,
+                userRating: 0
             }
         })
         await placeOrder(order);

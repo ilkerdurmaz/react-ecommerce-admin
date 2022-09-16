@@ -71,8 +71,7 @@ export const addProduct = async (data)=>{
 }
 
 export const updateProduct = async (product,id)=>{
-  try{await setDoc(doc(db, 'products', id),product)
-  toast.success("Successfully updated")}
+  try{await setDoc(doc(db, 'products', id),product)}
   catch(err){
     toast.error(err.code)
   }
@@ -133,7 +132,7 @@ export const getAllOrders = async ()=>{
 export const updateOrder = async (order,id)=>{
   try{
     await setDoc(doc(db, 'orders', id),order)
-  toast.success("Order Delivered")}
+  toast.success("Order Updated")}
   catch(err){
     toast.error(err.code)
   }

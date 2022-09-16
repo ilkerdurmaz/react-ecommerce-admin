@@ -13,9 +13,12 @@ const MyOrdersPage = () => {
     }, [])
     return (
         myOrders.length > 0 ?
-            <div className="container mt-3">
+            <div className="container px-1 px-sm-auto mt-3">
                 {
-                    sortedOrders.map(order => (<MyOrder key={order.fireId} order={order} />))
+                    sortedOrders.map(order => (<MyOrder
+                        key={order.fireId}
+                        order={order}
+                    />))
                 }
             </div>
             : <div className="spinner-grow" style={{ width: "10rem", height: "10rem" }} role="status">

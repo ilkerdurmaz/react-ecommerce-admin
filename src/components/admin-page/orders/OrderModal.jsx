@@ -65,7 +65,7 @@ class OrderModal extends Component {
 
                     <Modal.Footer className=' justify-content-between border-top-0'>
                         <span>Total Price: ₺{Object.values(this.props.order.data.items).reduce((totalCost, item) => totalCost + item.cost, 0)}</span>
-                        <button onClick={this.markDelivered} className='btn btn-primary'>Mark as Delivered</button>
+                        <button onClick={this.markDelivered} className='btn btn-primary' disabled={this.props.order.data.status === "closed" || this.props.order.data.status === "delivered"}>Mark as Delivered</button>
                     </Modal.Footer>
 
                 </Modal>
