@@ -19,10 +19,12 @@ const MyOrder = ({ order }) => {
 
     return (
         <div className='card my-2'>
+
             <div className='card-header d-flex justify-content-between'>
-                <small>Order Date: {orderTime.toLocaleDateString('tr-TR')}</small>
-                <small>Total Cost: ₺{totalCost}</small>
+                <span><span className='fw-bold'>Order Date:</span> {orderTime.toLocaleDateString('tr-TR')}</span>
+                <span><span className='fw-bold'>Total Cost:</span> ₺{totalCost}</span>
             </div>
+
             <div className='card-body p-0'>
                 <div className="table-responsive">
                     <table className="table">
@@ -64,9 +66,15 @@ const MyOrder = ({ order }) => {
                     </table>
                 </div>
             </div>
-            <div className="card-footer d-flex ">
-                <button onClick={() => setShow(true)} className='btn btn-secondary ms-auto' disabled={order.data.status === "closed" || order.data.status === "new"}>rate products</button>
+
+            <div className="card-footer d-flex justify-content-between align-items-center">
+                <span><span className='fw-bold'>Order Status: </span>{order.data.status.toUpperCase()}</span>
+                <button
+                    onClick={() => setShow(true)}
+                    className={`btn ${order.data.status === "closed" ? 'btn-outline-secondary' : 'btn-warning'} `}
+                    disabled={order.data.status === "closed" || order.data.status === "new"}>Rate Products</button>
             </div>
+
             <RatingModal show={show} handleClose={handleClose} products={productList} order={order} />
         </div>
     )

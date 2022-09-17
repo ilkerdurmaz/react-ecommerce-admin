@@ -47,7 +47,7 @@ const RatingModal = ({ show, handleClose, products, order }) => {
         >
 
             <Modal.Header closeButton>
-                <Modal.Title>Rate</Modal.Title>
+                <Modal.Title>Rate Delivered Products</Modal.Title>
             </Modal.Header>
             <Modal.Body className='p-1'>
                 {
