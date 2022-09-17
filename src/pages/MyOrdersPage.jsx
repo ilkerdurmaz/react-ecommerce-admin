@@ -14,13 +14,15 @@ const MyOrdersPage = () => {
 
     return (
         myOrders.length > 0 ?
-            <div className="container px-1 px-sm-auto mt-3">
-                {
-                    sortedOrders.map(order => (<MyOrder
-                        key={order.fireId}
-                        order={order}
-                    />))
-                }
+            <div style={{ maxWidth: '720px', margin: "auto" }}>
+                <div className="container px-1 px-sm-auto mt-3">
+                    {
+                        sortedOrders.map(order => (<MyOrder
+                            key={order.fireId}
+                            order={order}
+                        />))
+                    }
+                </div>
             </div>
             : <div className="alert alert-warning d-flex align-items-center justify-content-center h-100">You have no order.</div>
     )

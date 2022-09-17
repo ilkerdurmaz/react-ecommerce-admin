@@ -5,14 +5,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 export default class PieChartComp extends Component {
     data = [
         { name: 'Group A', value: 400 },
-        { name: 'Group B', value: 300 },
-        { name: 'Group C', value: 300 },
-        { name: 'Group D', value: 200 },
-        { name: 'Group A', value: 400 },
-        { name: 'Group B', value: 300 },
-        { name: 'Group C', value: 300 },
-        { name: 'Group D', value: 200 },
-        { name: 'Group D', value: 200 },
+
     ];
 
     COLORS = ['#003f5c', '#2f4b7c', '#665191', '#a05195', '#d45087', '#f95d6a', '#ff7c43', '#ffa600', 'black'];
@@ -42,10 +35,13 @@ export default class PieChartComp extends Component {
         }
 
         const sorted = Object.keys(this.categories).sort((a, b) => { return this.categories[b] - this.categories[a] })
+
         this.totalSale = 0;
+
         this.data = [
             ...sorted.map(cat => {
-                this.totalSale += this.categories[cat];
+
+                this.totalSale += this.categories[cat] || 0;
                 return {
                     name: cat,
                     value: this.categories[cat]

@@ -34,7 +34,6 @@ const RatingModal = ({ show, handleClose, products, order }) => {
     function onChangeHandler(index, value) {
         const temp = [...ratingValue];
         temp[index] = value;
-        console.log(temp);
         setRatingValue(temp)
     }
 
@@ -50,29 +49,39 @@ const RatingModal = ({ show, handleClose, products, order }) => {
             <Modal.Header closeButton>
                 <Modal.Title>Rate</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className='p-1'>
                 {
                     products.map((product, index) => (
-                        <div key={product.id} className='d-flex align-items-center'>
-                            <ProductImg src={product.imgUrl} width={"64px"} />
-                            <div className='d-flex flex-column'>
-                                <strong>{product.brand}</strong>
-                                {product.name}
+
+                        <div key={product.id}>
+                            <div className='d-flex align-items-center justify-content-between my-1'>
+
+                                <div className='d-flex align-items-center'>
+                                    <ProductImg src={product.imgUrl} width={"64px"} />
+                                    <div className='d-flex flex-column ms-1 small'>
+                                        <strong>{product.brand}</strong>
+                                        {product.name}
+                                    </div>
+                                </div>
+
+                                <div className='d-flex flex-column align-items-center'>
+                                    <Rating
+                                        initialRating={ratingValue[index]}
+                                        emptySymbol={<AiOutlineStar />}
+                                        fullSymbol={<AiFillStar />}
+                                        onChange={(value) => onChangeHandler(index, value)}
+                                        readonly={disable[index]}
+                                    />
+                                    <button className='btn btn-outline-success btn-sm mt-2' disabled={disable[index]} onClick={() => saveRating(product, index)}>apply rating</button>
+                                </div>
                             </div>
-                            <Rating
-                                initialRating={ratingValue[index]}
-                                emptySymbol={<AiOutlineStar />}
-                                fullSymbol={<AiFillStar />}
-                                onChange={(value) => onChangeHandler(index, value)}
-                                readonly={disable[index]}
-                            />
-                            <button disabled={disable[index]} onClick={() => saveRating(product, index)}>+</button>
+                            {!(index === products.length - 1) && <hr className='my-2' />}
                         </div>
                     ))
                 }
             </Modal.Body>
             <Modal.Footer className=' justify-content-between'>
-                <button className="btn btn-secondary ms-auto" onClick={closeOrder}>Close Order</button>
+                <button className="btn btn-warning ms-auto" onClick={closeOrder}>Close Order</button>
             </Modal.Footer>
         </Modal>
     )
