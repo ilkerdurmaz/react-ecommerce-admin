@@ -45,7 +45,7 @@ class ProductList extends Component {
     render() {
         return (
             <div>
-                <div className='d-flex justify-content-between'>
+                <div className='d-flex justify-content-between border rounded p-2 shadow-sm'>
                     <button onClick={this.openModal} className="btn btn-dark bg-gradient">Add Product</button>
                     <div className='d-flex justify-content-between'>
                         <Dropdown onSelect={this.selectedCategory} className='mx-1'>
@@ -84,16 +84,19 @@ class ProductList extends Component {
                         isUpdate={this.state.isUpdate}
                     />
                 }
-                <div className="container border rounded mt-2">
+                <div className="container border rounded mt-2 px-0 px-sm-2 shadow-sm">
                     <div className="table-responsive">
+                        <div className='text-center text-muted'>
+                            <small >Double click product to edit it's properties.</small>
+                        </div>
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Product</th>
-                                    <th scope="col" className='text-center'>Price</th>
-                                    <th scope="col" className='text-center'>Stock</th>
-                                    <th scope="col" className='text-center'>Rating</th>
+                                    <th scope="col" className='px-1 px-sm-2'>Image</th>
+                                    <th scope="col" className='px-1 px-sm-2'>Product</th>
+                                    <th scope="col" className='text-center px-1 px-sm-2'>Price</th>
+                                    <th scope="col" className='text-center px-1px-sm-2'>Stock</th>
+                                    <th scope="col" className='text-center px-1 px-sm-2'>Rating</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -101,11 +104,11 @@ class ProductList extends Component {
                                     this.props.productList.map((product) => {
                                         return (
                                             <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
-                                                <td><ProductImg width='50px' src={product.imgUrl} /></td>
-                                                <td><div className='d-flex flex-column small'><strong>{product.brand}</strong>{product.name}</div></td>
-                                                <td className='text-center'>{product.price}</td>
-                                                <td className='text-center'>{product.stock}</td>
-                                                <td className='text-center'>
+                                                <td className='px-0 px-sm-2'><ProductImg width='50px' src={product.imgUrl} /></td>
+                                                <td className='px-0 px-sm-2'><div className='d-flex flex-column small'><strong>{product.brand}</strong>{product.name}</div></td>
+                                                <td className='text-center px-1 px-sm-2'>{product.price}</td>
+                                                <td className='text-center px-1 px-sm-2'>{product.stock}</td>
+                                                <td className=' text-center px-1 px-sm-2'>
                                                     <Rating
                                                         emptySymbol={<AiOutlineStar size={18} />}
                                                         fullSymbol={<AiFillStar size={18} />}
@@ -121,7 +124,6 @@ class ProductList extends Component {
                         </table>
                     </div>
                 </div>
-
             </div>
         )
     }

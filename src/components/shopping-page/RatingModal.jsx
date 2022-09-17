@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
-import { useSelector } from 'react-redux';
 import ProductImg from './../shared/ProductImg';
 import { updateProduct, updateOrder } from '../../app/firebase';
 import Rating from 'react-rating'

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { getMyOrders } from '../app/firebase'
 import MyOrder from './../components/shopping-page/MyOrder';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ const MyOrdersPage = () => {
     useEffect(() => {
         getMyOrders(localStorage.getItem('orderOwnerId'))
     }, [])
+
     return (
         myOrders.length > 0 ?
             <div className="container px-1 px-sm-auto mt-3">
@@ -21,9 +22,7 @@ const MyOrdersPage = () => {
                     />))
                 }
             </div>
-            : <div className="spinner-grow" style={{ width: "10rem", height: "10rem" }} role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
+            : <div className="alert alert-warning d-flex align-items-center justify-content-center h-100">You have no order.</div>
     )
 }
 

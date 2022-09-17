@@ -8,10 +8,10 @@ function App() {
   const showRoutes = useRoutes(routes)
 
   return (
-    <div>
+    <div >
       <HeaderComp />
       <Toaster position='top-right' />
-      <div >
+      <div>
         {showRoutes}
       </div>
     </div>

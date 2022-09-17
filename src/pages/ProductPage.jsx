@@ -9,6 +9,8 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import Rating from 'react-rating'
 import { calculateRating } from '../app/utils';
 
+import toast from 'react-hot-toast'
+
 const ProductPage = () => {
     const { id } = useParams();
     const products = useSelector(state => state.product.list)
@@ -30,6 +32,7 @@ const ProductPage = () => {
             imgUrl: product.imgUrl,
             category: product.category
         }))
+        toast.success("Product has been added to your cart")
     }
 
     useEffect(() => {
@@ -40,42 +43,62 @@ const ProductPage = () => {
     }, [count])
 
     return (
-        product ? <div className="card m-auto" style={{ maxWidth: '540px' }}>
-            <div className="row g-0">
-                <div className="col-md-4">
-                    <img src={product.imgUrl} className="img-fluid rounded-start" alt="..." />
-                </div>
-                <div className="col-md-8">
-                    <div className="card-body">
-                        <h5 className="card-title">{product.brand}</h5>
-                        <p className="card-text">{product.name}</p>
-                        <p className="card-text"><small className="text-muted">{product.description}</small></p>
-                        <p className="card-text">₺ {product.price}</p>
-                        <Rating
-                            emptySymbol={<AiOutlineStar size={18} />}
-                            fullSymbol={<AiFillStar size={18} />}
-                            readonly={true}
-                            initialRating={calculateRating(product.rating)}
-                        />
+        product ?
+            <div style={{ maxWidth: '720px', margin: "auto" }}>
+                <div className='container py-3'>
+                    <div className="row border rounded">
+                        <div className="col-12 col-md-7 p-2">
+                            <img src={product.imgUrl} className="img-fluid img-thumbnail" alt="..." />
+                        </div>
 
-                        <form className='d-flex justify-content-between p-2' onSubmit={addProductToCart}>
-                            <div className="input-group input-group-sm m-1" style={{ width: "6rem" }}>
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count - 1)}>-</button>
+                        <div className="col-12 col-md-5 px-3 px-md-2 d-flex flex-column justify-content-between">
 
-                                <input name="quantity" type="text" className="form-control form-control-sm" value={count} onChange={(e) => setCount(e.target.value)} />
+                            <div>
+                                <div className='d-flex justify-content-between'>
+                                    <h5 className="fw-bold">{product.brand}</h5>
+                                    <Rating
+                                        emptySymbol={<AiOutlineStar size={18} />}
+                                        fullSymbol={<AiFillStar size={18} />}
+                                        readonly={true}
+                                        initialRating={calculateRating(product.rating)}
+                                    />
+                                </div>
 
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count + 1)}>+</button>
+                                <p className="card-title">{product.name}</p>
+
+                                <p className="card-text"><small className="text-muted">{product.description}</small></p>
                             </div>
-                            <button className='btn btn-dark p-1 m-1' type='submit'>
-                                <BsFillCartPlusFill size={28} /></button>
-                        </form>
-                    </div>
 
+                            <form className='' onSubmit={addProductToCart}>
+
+                                <div className='row'>
+
+                                    <div className="col-12 col-sm-8 col-md-12 d-flex justify-content-between align-items-center p-2">
+                                        <p className="fs-5 fw-bold m-0">Price: ₺{product.price}</p>
+
+                                        <div className="input-group input-group-sm" style={{ width: "6rem" }}>
+                                            <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count - 1)}>-</button>
+
+                                            <input name="quantity" type="text" className="form-control form-control-sm text-center" value={count} onChange={(e) => setCount(e.target.value)} />
+
+                                            <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count + 1)}>+</button>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12 col-sm-4 col-md-12 d-flex p-2">
+                                        <button className='btn btn-dark bg-gradient w-100 p-1' type='submit'>Add To Cart</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div> : <div className="spinner-grow" style={{ width: "10rem", height: "10rem" }} role="status">
-            <span className="visually-hidden">Loading...</span>
-        </div>
+            : <div className='d-flex justify-content-center'>
+                <div className="spinner-grow" style={{ width: "10rem", height: "10rem" }} role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
     )
 }
 
