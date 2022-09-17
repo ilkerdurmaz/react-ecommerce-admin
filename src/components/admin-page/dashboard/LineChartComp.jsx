@@ -1,76 +1,88 @@
 import React, { Component } from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default class LineChartComp extends Component {
-    data = [
-        {
-            name: 'Mon',
-            uv: 4000,
-            pv: 2400,
-            amt: 2400,
-        },
-        {
-            name: 'Tue',
-            uv: 3000,
-            pv: 1398,
-            amt: 2210,
-        },
-        {
-            name: 'Wed',
-            uv: 2000,
-            pv: 8000,
-            amt: 2290,
-        },
-        {
-            name: 'Thu',
-            uv: 2780,
-            pv: 2500,
-            amt: 2000,
-        },
-        {
-            name: 'Fri',
-            uv: 1890,
-            pv: 4800,
-            amt: 2181,
-        },
-        {
-            name: 'Sat',
-            uv: 2390,
-            pv: 3800,
-            amt: 2500,
-        },
-        {
-            name: 'Sun',
-            uv: 3490,
-            pv: 4300,
-            amt: 2100,
-        },
-    ];
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: [
+                {
+                    "name": "Page A",
+                    "sale": 8560,
+
+                },
+                {
+                    "name": "Page B",
+                    "sale": 10000,
+
+                },
+                {
+                    "name": "Page C",
+                    "sale": 2000,
+                },
+            ],
+
+        }
+    }
+    orders = []
+
+    updateChart() {
+        let tempData = []
+        if (this.props.orders.length > 0) {
+            this.orders = this.props.orders.map(order => order.data)
+            tempData = this.orders.map(order => {
+                return {
+                    totalCost: Object.values(order.items).reduce((totalCost, item) => totalCost + item.cost, 0),
+                    quantity: Object.values(order.items).reduce((totalCost, item) => totalCost + item.quantity, 0),
+                    timeStamp: new Date(order.timeStamp).getHours() + ":" + new Date(order.timeStamp).getMinutes()
+                }
+            })
+        }
+
+        this.setState({
+            data: tempData.map(item => {
+                return {
+                    "name": item.timeStamp,
+                    "sale": item.totalCost
+                }
+            })
+        })
+    }
+
+    componentDidMount() {
+        this.updateChart()
+    }
 
     render() {
         return (
-            <div style={{ width: '1080px', height: '300px' }}>
-                <ResponsiveContainer width='100%' height="100%">
-                    <LineChart
+            <div style={{ width: '%100', height: '300px' }}>
+                <ResponsiveContainer className={"border rounded"}>
+                    <AreaChart
                         width={500}
-                        height={300}
-                        data={this.data}
+                        height={400}
+                        data={this.state.data}
                         margin={{
-                            top: 5,
-                            right: 30,
-                            left: 20,
-                            bottom: 5,
+                            top: 10,
+                            right: 0,
+                            left: -10,
+                            bottom: 0,
                         }}
                     >
-                        <CartesianGrid strokeDasharray="3 3" />
+                        <defs>
+                            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="50%" stopColor="#8884d8" stopOpacity={1} />
+                                <stop offset="95%" stopColor="#8884d8" stopOpacity={0.2} />
+                            </linearGradient>
+
+                        </defs>
+
                         <XAxis dataKey="name" />
-                        <YAxis />
+
                         <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                    </LineChart>
+                        <Area type="monotone" dataKey="sale" stroke="#8884d8" fill="url(#colorUv)" />
+                    </AreaChart>
                 </ResponsiveContainer>
+
             </div>
 
         )

@@ -8,6 +8,7 @@ import {loginHandle,logoutHandle} from './store/auth'
 import {clearCart} from './store/cart'
 import {setProducts} from './store/product'
 import { setOrders } from "./store/orders";
+import {setAllOrders} from "./store/adminDashboard"
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -122,6 +123,7 @@ export const getAllOrders = async ()=>{
       // doc.data() is never undefined for query doc snapshots
       orders.push({fireId:doc.id,data:doc.data()})
     });
+    store.dispatch(setAllOrders(orders))
     return orders;
   }
   catch(err){

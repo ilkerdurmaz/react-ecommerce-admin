@@ -10,7 +10,17 @@ export default class AddProductModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: ["Others", "Category-2", "Category-3", "Category-4", "Category-5"],
+            categories: [
+                "Electronics",
+                "Clothing",
+                "Toys",
+                "Food",
+                "Sport",
+                "Accessories",
+                "Furniture",
+                "Hobby and DIY",
+                "Healt & Beauty"
+            ],
         }
     }
 

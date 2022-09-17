@@ -4,7 +4,10 @@ import Table from 'react-bootstrap/Table';
 export default class TopSellingComp extends Component {
     render() {
         return (
-            <div>
+            <div className='border rounded mt-2 mb-1'>
+                <div className='text-center'>
+                    <span className='fs-4 mb-1'>Top Selling Products</span>
+                </div>
                 <Table responsive>
                     <thead>
                         <tr>

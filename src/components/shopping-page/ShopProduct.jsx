@@ -17,7 +17,8 @@ const ShopProduct = ({ product }) => {
             brand: product.brand,
             quantity: 1,
             price: product.price,
-            imgUrl: product.imgUrl
+            imgUrl: product.imgUrl,
+            category: product.category
         }))
     }
 

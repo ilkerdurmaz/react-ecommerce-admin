@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ProductImg from './../../shared/ProductImg';
 import Rating from 'react-rating'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import { calculateRating } from './../../../app/utils';
 
 class ProductList extends Component {
 
@@ -109,7 +110,7 @@ class ProductList extends Component {
                                                         emptySymbol={<AiOutlineStar size={18} />}
                                                         fullSymbol={<AiFillStar size={18} />}
                                                         readonly={true}
-                                                        initialRating={product.rating}
+                                                        initialRating={calculateRating(product.rating)}
                                                     />
                                                 </td>
                                             </tr>

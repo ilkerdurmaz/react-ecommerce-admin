@@ -6,6 +6,5 @@ export const calculateRating = (ratings)=>{
         sum1+=temp[i]*(i+1)
         sum2+=temp[i]
     }
-    console.log(Number((sum1/sum2).toFixed(1))||0)
     return Number((sum1/sum2).toFixed(1))||0
 }

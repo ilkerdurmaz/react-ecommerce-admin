@@ -20,13 +20,15 @@ const ProductPage = () => {
 
     function addProductToCart(e) {
         e.preventDefault()
+
         dispatch(addToCart({
             id: product.id,
             name: product.name,
             brand: product.brand,
             quantity: count,
             price: product.price,
-            imgUrl: product.imgUrl
+            imgUrl: product.imgUrl,
+            category: product.category
         }))
     }
 
