@@ -26,7 +26,6 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="container">
-
                 <div className="row">
                     <div className="col px-1">
                         <Tabs
