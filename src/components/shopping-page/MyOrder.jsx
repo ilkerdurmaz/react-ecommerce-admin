@@ -68,7 +68,11 @@ const MyOrder = ({ order }) => {
             </div>
 
             <div className="card-footer d-flex justify-content-between align-items-center">
-                <span><span className='fw-bold'>Order Status: </span>{order.data.status.toUpperCase()}</span>
+                <span>
+                    <span className='fw-bold me-1'>Order Status:</span>
+                    <span className={order.data.status === "closed" ? 'text-success' : 'text-primary'}>
+                        {order.data.status.toUpperCase()}</span>
+                </span>
                 <button
                     onClick={() => setShow(true)}
                     className={`btn ${order.data.status === "closed" ? 'btn-outline-secondary' : 'btn-warning'} `}

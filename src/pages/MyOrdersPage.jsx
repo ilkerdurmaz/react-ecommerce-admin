@@ -14,7 +14,7 @@ const MyOrdersPage = () => {
 
     return (
         myOrders.length > 0 ?
-            <div style={{ maxWidth: '720px', margin: "auto" }}>
+            <div style={{ maxWidth: '960px', margin: "auto" }}>
                 <div className="container px-1 px-sm-auto mt-3">
                     {
                         sortedOrders.map(order => (<MyOrder

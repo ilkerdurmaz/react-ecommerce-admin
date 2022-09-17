@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { addToCart } from '../app/store/cart';
 import { useDispatch } from 'react-redux';
 
-import { BsFillCartPlusFill } from 'react-icons/bs'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import Rating from 'react-rating'
 import { calculateRating } from '../app/utils';
@@ -46,7 +45,7 @@ const ProductPage = () => {
         product ?
             <div style={{ maxWidth: '720px', margin: "auto" }}>
                 <div className='container py-3'>
-                    <div className="row border rounded">
+                    <div className="row border rounded shadow-sm">
                         <div className="col-12 col-md-7 p-2">
                             <img src={product.imgUrl} className="img-fluid img-thumbnail" alt="..." />
                         </div>
@@ -76,7 +75,7 @@ const ProductPage = () => {
                                     <div className="col-12 col-sm-8 col-md-12 d-flex justify-content-between align-items-center p-2">
                                         <p className="fs-5 fw-bold m-0">Price: ₺{product.price}</p>
 
-                                        <div className="input-group input-group-sm" style={{ width: "6rem" }}>
+                                        <div className="input-group input-group-sm shadow-sm" style={{ width: "6rem" }}>
                                             <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count - 1)}>-</button>
 
                                             <input name="quantity" type="text" className="form-control form-control-sm text-center" value={count} onChange={(e) => setCount(e.target.value)} />

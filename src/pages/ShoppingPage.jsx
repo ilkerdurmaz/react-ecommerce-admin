@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux'
 const ShoppingPage = () => {
     const products = useSelector(state => state.product.list)
     return (
-        <div className='container mt-3' >
-            <div className='d-flex justify-content-between'>
+        <div className='mx-auto mt-3 p-0' style={{ maxWidth: '1080px' }}>
+            <div className='d-flex flex-wrap justify-content-center'>
                 {
                     products.map(product => (
                         <ShopProduct key={product.id} product={product} />
