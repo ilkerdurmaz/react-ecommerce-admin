@@ -21,17 +21,17 @@ function BasicExample() {
 
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className='d-flex align-items-center'>
-                        <Nav.Item className='mx-1'>
-                            <NavLink to='/'>Products</NavLink>
+                        <Nav.Item className='mx-2'>
+                            <NavLink to='/' className={`text-decoration-none  `}>Products</NavLink>
                         </Nav.Item>
-                        <Nav.Item className='mx-1'>
-                            <NavLink to='/my-orders'>My Orders</NavLink>
+                        <Nav.Item className='mx-2'>
+                            <NavLink to='/my-orders' className={"text-decoration-none text-light"}>My Orders</NavLink>
                         </Nav.Item>
-                        <Nav.Item className='mx-1'>
-                            <NavLink to='/cart'>Shopping Cart </NavLink>
+                        <Nav.Item className='mx-2'>
+                            <NavLink to='/cart' className={"text-decoration-none text-light"}>Shopping Cart </NavLink>
                         </Nav.Item>
-                        <Nav.Item className='mx-1'>
-                            <NavLink to='/admin'>Admin </NavLink>
+                        <Nav.Item className='mx-2'>
+                            <NavLink to='/admin' className={"text-decoration-none text-light"}>Admin </NavLink>
                         </Nav.Item>
 
                     </Nav>
