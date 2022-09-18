@@ -1,21 +1,112 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ShopProduct from '../components/shopping-page/ShopProduct'
 import { useSelector } from 'react-redux'
+import { calculateRating } from './../app/utils';
+
+
 
 
 const ShoppingPage = () => {
     const products = useSelector(state => state.product.list)
+    const [filteredProducts, setFilteredProducts] = useState([])
+    const [selectedSort, setSelectedSort] = useState()
+    const categories = [
+        "All",
+        "Electronics",
+        "Clothing",
+        "Toys",
+        "Food",
+        "Sport",
+        "Accessories",
+        "Furniture",
+        "Hobby and DIY",
+        "Healt & Beauty"
+    ]
+
+    function filter(e) {
+        const selectedCategory = e.target.value
+        if (selectedCategory !== "All") {
+            setFilteredProducts([...products.filter(product => product.category === selectedCategory)])
+        }
+        else {
+            setFilteredProducts([...products])
+        }
+        sort("Nothing")
+    }
+
+
+    function sort(value) {
+        setSelectedSort(value)
+        const sortType = value
+        const sortedProducts = structuredClone(filteredProducts);
+        if (sortType === "priceLow")
+            sortedProducts.sort((a, b) => a.price - b.price)
+        else if (sortType === "priceHigh")
+            sortedProducts.sort((a, b) => b.price - a.price)
+        else if (sortType === "Rating")
+            sortedProducts.sort((a, b) => calculateRating(b.rating) - calculateRating(a.rating))
+        else
+            return
+        setFilteredProducts([...sortedProducts])
+    }
+
+    useEffect(() => {
+        setFilteredProducts([...products])
+    }, [products])
+
+
+
+
     return (
-        <div className='mx-auto mt-3 p-0' style={{ maxWidth: '1080px' }}>
-            <div className='d-flex flex-wrap justify-content-center'>
+        <div className='mx-auto mt-3 p-0' style={{ maxWidth: '1280px' }}>
+
+            <div className='container border rounded shadow-sm'>
+
+                <div className="row">
+                    <div className="col-12 col-md-4 my-2 px-3 text-center">
+                        <span className='fs-3'>Shopping Page</span>
+                    </div>
+
+                    <div className='col-12 col-md-8 my-2 px-3 d-flex justify-content-center'>
+
+                        <div className='d-flex'>
+                            <small>Filter By Category:</small>
+                            <select className="form-select" onChange={filter}>
+                                {
+                                    categories.map((category, index) => (
+                                        <option value={category} key={index}>{category}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+
+                        <div className='d-flex ms-4'>
+                            <small>Sort By :</small>
+                            <select className="form-select" value={selectedSort} onChange={(e) => sort(e.target.value)}>
+                                <option value="Nothing">Nothing</option>
+                                <option value="Rating">Rating</option>
+                                <option value="priceLow">Price: Low to High</option>
+                                <option value="priceHigh">Price: High to low</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div className='d-flex flex-wrap justify-content-center mt-2'>
                 {
-                    products.map(product => (
+                    filteredProducts.map(product => (
                         <ShopProduct key={product.id} product={product} />
                     ))
                 }
             </div>
+
         </div >
     )
 }
 
 export default ShoppingPage
+
+
+

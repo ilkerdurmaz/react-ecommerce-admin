@@ -56,63 +56,65 @@ const CartPage = () => {
     }, [cart])
 
     return (
-        <div className='container mt-3'>
-            <div className="row flex-row-reverse">
+        <div style={{ maxWidth: '960px', margin: "auto" }}>
+            <div className='container mt-3'>
+                <div className="row flex-row-reverse">
 
-                <div className="col-12 col-md-4 px-0 px-md-3 my-3 my-md-0">
-                    <div className="card">
-                        <div className="card-header text-center">
-                            <h5 className="card-title">Order Summary</h5>
-                        </div>
-                        <div className="card-body">
-                            <p className="card-text">Total Cost: ₺{total}</p>
-                            <button className="btn w-100 btn-warning" onClick={placeOrderHandler}
-                                disabled={!(cart.length > 0)}>Place Order</button>
+                    <div className="col-12 col-md-4 px-0 px-md-3 my-3 my-md-0">
+                        <div className="card">
+                            <div className="card-header text-center">
+                                <h5 className="card-title">Order Summary</h5>
+                            </div>
+                            <div className="card-body">
+                                <p className="card-text">Total Cost: ₺{total}</p>
+                                <button className="btn w-100 btn-warning" onClick={placeOrderHandler}
+                                    disabled={!(cart.length > 0)}>Place Order</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="col-12 col-md-8 border rounded px-0 p-sm-2">
-                    {
-                        cart.length > 0 ?
-                            <div className="table-responsive">
-                                <table className="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" className='px-1 p-sm-2'>Image</th>
-                                            <th scope="col">Product</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col" className='text-center'>Quantity</th>
-                                            <th scope="col" className='px-1 p-sm-2'>Cost</th>
-                                            <th scope="col" className='text-center text-danger'>✘</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            cart.map((product) => {
-                                                return (
-                                                    <tr key={product.id} >
-                                                        <td className='px-1 p-sm-2'><ProductImg width='50px' src={product.imgUrl} /></td>
-                                                        <td><div className='d-flex flex-column'>
-                                                            <strong>{product.brand}</strong>
-                                                            <NavLink to={`/${product.id}`}>{product.name}</NavLink>
-                                                        </div></td>
-                                                        <td>{product.price}</td>
-                                                        <td className='text-center'>{product.quantity}</td>
-                                                        <td className='px-1 p-sm-2'>₺{product.quantity * product.price}</td>
-                                                        <td className='text-center'>
-                                                            <button className='btn m-0 p-0' onClick={() => deleteFromCart(product.id)}>
-                                                                <BsFillCartDashFill size={24} />
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            })
-                                        }
-                                    </tbody>
-                                </table>
-                            </div> : <div className="alert alert-warning d-flex align-items-center justify-content-center h-100">Your shopping cart is empty.</div>
-                    }
+                    <div className="col-12 col-md-8 border rounded px-0 p-sm-2">
+                        {
+                            cart.length > 0 ?
+                                <div className="table-responsive">
+                                    <table className="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" className='px-1 p-sm-2'>Image</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col" className='text-center'>Quantity</th>
+                                                <th scope="col" className='px-1 p-sm-2'>Cost</th>
+                                                <th scope="col" className='text-center text-danger'>✘</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                cart.map((product) => {
+                                                    return (
+                                                        <tr key={product.id} >
+                                                            <td className='px-1 p-sm-2'><ProductImg width='50px' src={product.imgUrl} /></td>
+                                                            <td><div className='d-flex flex-column'>
+                                                                <strong>{product.brand}</strong>
+                                                                <NavLink to={`/${product.id}`}>{product.name}</NavLink>
+                                                            </div></td>
+                                                            <td>{product.price}</td>
+                                                            <td className='text-center'>{product.quantity}</td>
+                                                            <td className='px-1 p-sm-2'>₺{product.quantity * product.price}</td>
+                                                            <td className='text-center'>
+                                                                <button className='btn m-0 p-0' onClick={() => deleteFromCart(product.id)}>
+                                                                    <BsFillCartDashFill size={24} />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div> : <div className="alert alert-warning d-flex align-items-center justify-content-center h-100">Your shopping cart is empty.</div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
