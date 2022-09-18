@@ -15,7 +15,6 @@ const AdminPage = () => {
         })
     }
 
-    console.log(location.pathname)
     return (
         <div className='container mt-3 border rounded shadow' style={{ maxWidth: '1080px', margin: "auto" }}>
 

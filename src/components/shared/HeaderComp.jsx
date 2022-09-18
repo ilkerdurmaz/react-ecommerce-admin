@@ -8,8 +8,8 @@ import toast from 'react-hot-toast'
 function BasicExample() {
 
     function checkCart(e) {
-        const cart = JSON.parse(localStorage.getItem('cart'))
-        if (cart.length === 0) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || []
+        if (cart === null || cart.length === 0) {
             e.preventDefault();
             toast.error("Cart is empty!")
         }
