@@ -8,16 +8,29 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { calculateRating } from './../../../app/utils';
 
 class ProductList extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             show: false,
             isUpdate: false,
-            selectedProduct: null
+            selectedProduct: null,
+            selectedCategory: "All"
+
         }
     }
-
+    filtered = [...this.props.productList]
+    categories = [
+        "All",
+        "Electronics",
+        "Clothing",
+        "Toys",
+        "Food",
+        "Sport",
+        "Accessories",
+        "Furniture",
+        "Hobby and DIY",
+        "Healt & Beauty"
+    ]
     handleClose = () => this.setState({ show: false })
 
     openModal = () => {
@@ -31,44 +44,33 @@ class ProductList extends Component {
         }
     }
 
-    selectedCategory = (value) => {
-        console.log(value)
-    }
+    handleFilter() {
+        let filteredProducts = []
+        if (this.state.selectedCategory !== "All")
+            filteredProducts = [...this.props.productList.filter(product => product.category === this.state.selectedCategory)]
+        else
+            filteredProducts = [...this.props.productList]
 
-    selectedSorting = (value) => {
-        console.log(value)
-    }
-
-    componentDidMount() {
+        this.filtered = [...filteredProducts]
     }
 
     render() {
+        this.handleFilter()
         return (
             <div>
-                <div className='d-flex justify-content-between border rounded p-2 shadow-sm'>
+                <div className='container d-flex justify-content-between border rounded p-2 shadow-sm align-items-center'>
                     <button onClick={this.openModal} className="btn btn-dark bg-gradient">Add Product</button>
+                    <small className='text-muted d-none d-md-block'>Double click product to edit it's properties.</small>
                     <div className='d-flex justify-content-between'>
-                        <Dropdown onSelect={this.selectedCategory} className='mx-1'>
+                        <Dropdown onSelect={(value) => this.setState({ selectedCategory: value })} className='mx-1'>
                             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                Category
+                                {this.state.selectedCategory}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item eventKey="cat1">Action</Dropdown.Item>
-                                <Dropdown.Item eventKey="cat2">Another action</Dropdown.Item>
-                                <Dropdown.Item eventKey="cat3">Something else</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-
-                        <Dropdown onSelect={this.selectedSorting} className='mx-1'>
-                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                Sort
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item eventKey="sort1">Action</Dropdown.Item>
-                                <Dropdown.Item eventKey="sort2">Another action</Dropdown.Item>
-                                <Dropdown.Item eventKey="sort3">Something else</Dropdown.Item>
+                                {this.categories.map((category) => (
+                                    <Dropdown.Item key={category} eventKey={category}>{category}</Dropdown.Item>))
+                                }
                             </Dropdown.Menu>
                         </Dropdown>
 
@@ -87,7 +89,7 @@ class ProductList extends Component {
                 <div className="container border rounded mt-2 px-0 px-sm-2 shadow-sm">
                     <div className="table-responsive">
                         <div className='text-center text-muted'>
-                            <small >Double click product to edit it's properties.</small>
+                            <small className='d-md-none'>Double click product to edit it's properties.</small>
                         </div>
                         <table className="table table-hover">
                             <thead>
@@ -101,7 +103,7 @@ class ProductList extends Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.props.productList.map((product) => {
+                                    this.filtered.map((product) => {
                                         return (
                                             <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
                                                 <td className='px-0 px-sm-2'><ProductImg width='50px' src={product.imgUrl} /></td>
@@ -134,3 +136,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(ProductList);
+
+
