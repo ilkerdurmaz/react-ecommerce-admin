@@ -39,6 +39,7 @@ const ShoppingPage = () => {
         setSelectedSort(value)
         const sortType = value
         const sortedProducts = structuredClone(filteredProducts);
+
         if (sortType === "priceLow")
             sortedProducts.sort((a, b) => a.price - b.price)
         else if (sortType === "priceHigh")
@@ -53,9 +54,6 @@ const ShoppingPage = () => {
     useEffect(() => {
         setFilteredProducts([...products])
     }, [products])
-
-
-
 
     return (
         <div className='mx-auto mt-3 p-0' style={{ maxWidth: '1280px' }}>

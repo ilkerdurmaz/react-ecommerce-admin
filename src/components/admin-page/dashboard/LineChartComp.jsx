@@ -1,29 +1,26 @@
 import React, { Component } from 'react'
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default class LineChartComp extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            data: [
-                {
-                    "name": "Page A",
-                    "sale": 8560,
 
-                },
-                {
-                    "name": "Page B",
-                    "sale": 10000,
+    data = [
+        {
+            "name": "a",
+            "sale": 1000,
 
-                },
-                {
-                    "name": "Page C",
-                    "sale": 2000,
-                },
-            ],
+        },
+        {
+            "name": "b",
+            "sale": 2000,
 
-        }
-    }
+        },
+        {
+            "name": "c",
+            "sale": 1000,
+        },
+    ]
+
+
     orders = []
 
     updateChart() {
@@ -39,21 +36,16 @@ export default class LineChartComp extends Component {
             })
         }
 
-        this.setState({
-            data: tempData.map(item => {
-                return {
-                    "name": item.timeStamp,
-                    "sale": item.totalCost
-                }
-            })
+        this.data = tempData.map(item => {
+            return {
+                "name": item.timeStamp,
+                "sale": item.totalCost
+            }
         })
     }
 
-    componentDidMount() {
-        this.updateChart()
-    }
-
     render() {
+        this.updateChart()
         return (
             <div className='border rounded shadow-sm'>
                 <div className='text-center'>
@@ -65,7 +57,7 @@ export default class LineChartComp extends Component {
                         <AreaChart
                             width={500}
                             height={400}
-                            data={this.state.data}
+                            data={this.data}
                             margin={{
                                 top: 10,
                                 right: 0,
