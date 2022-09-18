@@ -35,24 +35,25 @@ export default class OrderList extends Component {
     render() {
         return (
             this.state.sortedOrders.length > 0 ?
-                <div className="container border rounded px-0 shadow-sm">
+                <div className="container border rounded px-0 shadow-sm" >
                     <div className="table-responsive">
-                        <table className="table table-hover">
+                        <table className="table table-hover caption-top">
+                            <caption className='px-2 pb-0 small text-sm-center'>Click order to see it's details and mark as "delivered".</caption>
                             <thead>
                                 <tr>
                                     <th scope="col" className='pe-0 px-sm-auto'>Date</th>
                                     <th scope="col" >Order Id</th>
-                                    <th scope="col" className='text-center'>Status</th>
+                                    <th scope="col" className=''>Status</th>
                                     <th scope="col" >Price</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 {
                                     this.state.sortedOrders.map(order => (
                                         <tr key={order.fireId} onClick={() => this.openOrderModal(order)}>
                                             <td className='pe-0 px-sm-auto'>{new Date(order.data.timeStamp).toLocaleDateString('tr-TR')}</td>
                                             <td ><small>{order.fireId}</small></td>
-                                            <td className='text-center'><span className={`badge ${order.data.status === "new" ? "text-bg-warning" : "text-bg-success"
+                                            <td className=''><span className={`badge ${order.data.status === "new" ? "text-bg-warning" : "text-bg-success"
                                                 } fs-6`}>
                                                 {order.data.status.toUpperCase()}</span></td>
 
@@ -62,7 +63,6 @@ export default class OrderList extends Component {
                                 }
                             </tbody>
                         </table>
-                        <div className='px-2 text-center'><small>Click order to see it's details and mark as "delivered".</small></div>
                     </div>
                     {
                         this.state.selectedOrder && <OrderModal show={this.state.showModal} handleClose={this.handleClose} order={this.state.selectedOrder} />

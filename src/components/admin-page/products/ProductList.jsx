@@ -91,39 +91,41 @@ class ProductList extends Component {
                         <div className='text-center text-muted'>
                             <small className='d-md-none'>Double click product to edit it's properties.</small>
                         </div>
-                        <table className="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col" className='px-1 px-sm-2'>Image</th>
-                                    <th scope="col" className='px-1 px-sm-2'>Product</th>
-                                    <th scope="col" className='text-center px-1 px-sm-2'>Price</th>
-                                    <th scope="col" className='text-center px-1px-sm-2'>Stock</th>
-                                    <th scope="col" className='text-center px-1 px-sm-2'>Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    this.filtered.map((product) => {
-                                        return (
-                                            <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
-                                                <td className='px-0 px-sm-2'><ProductImg width='50px' src={product.imgUrl} /></td>
-                                                <td className='px-0 px-sm-2'><div className='d-flex flex-column small'><strong>{product.brand}</strong>{product.name}</div></td>
-                                                <td className='text-center px-1 px-sm-2'>{product.price}</td>
-                                                <td className='text-center px-1 px-sm-2'>{product.stock}</td>
-                                                <td className=' text-center px-1 px-sm-2'>
-                                                    <Rating
-                                                        emptySymbol={<AiOutlineStar size={18} />}
-                                                        fullSymbol={<AiFillStar size={18} />}
-                                                        readonly={true}
-                                                        initialRating={calculateRating(product.rating)}
-                                                    />
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
+                        {
+                            this.props.productList.length > 0 ? <table className="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" className='px-1 px-sm-2'>Image</th>
+                                        <th scope="col" className='px-1 px-sm-2'>Product</th>
+                                        <th scope="col" className='text-center px-1 px-sm-2'>Price</th>
+                                        <th scope="col" className='text-center px-1px-sm-2'>Stock</th>
+                                        <th scope="col" className='text-center px-1 px-sm-2'>Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        this.filtered.map((product) => {
+                                            return (
+                                                <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
+                                                    <td className='px-0 px-sm-2'><ProductImg width='50px' src={product.imgUrl} /></td>
+                                                    <td className='px-0 px-sm-2'><div className='d-flex flex-column small'><strong>{product.brand}</strong>{product.name}</div></td>
+                                                    <td className='text-center px-1 px-sm-2'>{product.price}</td>
+                                                    <td className='text-center px-1 px-sm-2'>{product.stock}</td>
+                                                    <td className=' text-center px-1 px-sm-2'>
+                                                        <Rating
+                                                            emptySymbol={<AiOutlineStar size={18} />}
+                                                            fullSymbol={<AiFillStar size={18} />}
+                                                            readonly={true}
+                                                            initialRating={calculateRating(product.rating)}
+                                                        />
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table> : <div className="alert alert-warning d-flex align-items-center justify-content-center h-100 m-3">There is no product.</div>
+                        }
                     </div>
                 </div>
             </div>

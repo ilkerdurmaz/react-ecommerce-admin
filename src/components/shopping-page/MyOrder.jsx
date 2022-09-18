@@ -27,43 +27,47 @@ const MyOrder = ({ order }) => {
 
             <div className='card-body p-0'>
                 <div className="table-responsive">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Image</th>
-                                <th scope="col" className='px-0'>Product</th>
-                                <th scope="col" className='text-center'>Pieces</th>
-                                <th scope="col" className='text-center'>Cost</th>
+                    {
+                        products.length > 0 ?
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                        <th scope="col" className='px-0'>Product</th>
+                                        <th scope="col" className='text-center'>Pieces</th>
+                                        <th scope="col" className='text-center'>Cost</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
 
-                                items.map((item) => {
-                                    const product = products.find(product => product.id === item.productId)
-                                    productList.push(product);
-                                    return (
-                                        <tr key={item.productId}>
-                                            <td><ProductImg src={product.imgUrl} width={"64px"} /></td>
+                                        items.map((item) => {
+                                            const product = products.find(product => product.id === item.productId)
+                                            productList.push(product);
+                                            return (
+                                                <tr key={item.productId}>
+                                                    <td><ProductImg src={product.imgUrl} width={"64px"} /></td>
 
-                                            <td className='px-0'>
-                                                <div className='d-flex flex-column'>
-                                                    <strong>{product.brand}</strong>
-                                                    <NavLink to={`/${product.id}`}>{product.name}</NavLink>
-                                                </div>
-                                            </td>
+                                                    <td className='px-0'>
+                                                        <div className='d-flex flex-column'>
+                                                            <strong>{product.brand}</strong>
+                                                            <NavLink to={`/${product.id}`}>{product.name}</NavLink>
+                                                        </div>
+                                                    </td>
 
-                                            <td className='text-center'>{item.quantity}</td>
+                                                    <td className='text-center'>{item.quantity}</td>
 
-                                            <td className='text-center'>₺{item.cost}</td>
+                                                    <td className='text-center'>₺{item.cost}</td>
 
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table> :
+                            <div className="alert alert-warning d-flex align-items-center justify-content-center h-100 m-3">Product information not found. </div>
+                    }
                 </div>
             </div>
 

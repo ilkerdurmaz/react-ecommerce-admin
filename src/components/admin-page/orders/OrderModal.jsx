@@ -31,35 +31,39 @@ class OrderModal extends Component {
 
                     <Modal.Body className='p-1'>
                         <div className="table-responsive">
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" className='px-1'>Image</th>
-                                        <th scope="col" className='px-1'>Product</th>
-                                        <th scope="col" className='px-1 text-center'>Piece</th>
-                                        <th scope="col" className='px-1 text-center'>Cost</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        Object.values(this.props.order.data.items).map((item) => {
-                                            const product = this.props.productList.find(product => product.id === item.productId)
-                                            return (
-                                                <tr key={product.id}>
-                                                    <td className='px-1'><ProductImg src={product.imgUrl} width={'48px'} /></td>
+                            {
+                                this.props.productList.length > 0 ?
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" className='px-1'>Image</th>
+                                                <th scope="col" className='px-1'>Product</th>
+                                                <th scope="col" className='px-1 text-center'>Piece</th>
+                                                <th scope="col" className='px-1 text-center'>Cost</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                Object.values(this.props.order.data.items).map((item) => {
+                                                    const product = this.props.productList.find(product => product.id === item.productId)
+                                                    return (
+                                                        <tr key={product.id}>
+                                                            <td className='px-1'><ProductImg src={product.imgUrl} width={'48px'} /></td>
 
-                                                    <td className='px-1'><div className='d-flex flex-column small'>
-                                                        <strong>{product.brand}</strong>
-                                                        <NavLink to={`/${product.id}`}>{product.name}</NavLink>
-                                                    </div></td>
-                                                    <td className='px-1 text-center'>{item.quantity}</td>
-                                                    <td className='px-1 text-center'>₺{item.cost}</td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
+                                                            <td className='px-1'><div className='d-flex flex-column small'>
+                                                                <strong>{product.brand}</strong>
+                                                                <NavLink to={`/${product.id}`}>{product.name}</NavLink>
+                                                            </div></td>
+                                                            <td className='px-1 text-center'>{item.quantity}</td>
+                                                            <td className='px-1 text-center'>₺{item.cost}</td>
+                                                        </tr>
+                                                    )
+                                                })
+                                            }
+                                        </tbody>
+                                    </table>
+                                    : <div className="alert alert-warning d-flex align-items-center justify-content-center h-100 m-3">Product information not found. </div>
+                            }
                         </div>
                     </Modal.Body>
 

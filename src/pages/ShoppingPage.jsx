@@ -61,11 +61,11 @@ const ShoppingPage = () => {
             <div className='container border rounded shadow-sm'>
 
                 <div className="row">
-                    <div className="col-12 col-md-4 my-2 px-3 text-center">
+                    <div className="col-12 col-md-4 my-2 px-3 d-flex justify-content-center justify-content-md-start">
                         <span className='fs-3'>Shopping Page</span>
                     </div>
 
-                    <div className='col-12 col-md-8 my-2 px-3 d-flex justify-content-center'>
+                    <div className='col-12 col-md-8 my-2 px-3 d-flex justify-content-end'>
 
                         <div className='d-flex'>
                             <small>Filter By Category:</small>
@@ -90,16 +90,17 @@ const ShoppingPage = () => {
                     </div>
                 </div>
             </div>
-
-
-            <div className='d-flex flex-wrap justify-content-center mt-2'>
-                {
-                    filteredProducts.map(product => (
-                        <ShopProduct key={product.id} product={product} />
-                    ))
-                }
-            </div>
-
+            {
+                filteredProducts.length > 0 ?
+                    <div className='d-flex flex-wrap justify-content-center mt-2'>
+                        {
+                            filteredProducts.map(product => (
+                                <ShopProduct key={product.id} product={product} />
+                            ))
+                        }
+                    </div> :
+                    <div className="alert alert-warning d-flex align-items-center justify-content-center h-100 m-3">No products found in this category.</div>
+            }
         </div >
     )
 }
