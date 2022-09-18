@@ -61,7 +61,7 @@ const CartPage = () => {
                 <div className="row flex-row-reverse">
 
                     <div className="col-12 col-md-4 px-0 px-md-3 my-3 my-md-0">
-                        <div className="card">
+                        <div className="card shadow-sm">
                             <div className="card-header text-center">
                                 <h5 className="card-title">Order Summary</h5>
                             </div>
@@ -73,7 +73,7 @@ const CartPage = () => {
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-8 border rounded px-0 p-sm-2">
+                    <div className="col-12 col-md-8 border rounded px-0 p-sm-2 shadow-sm">
                         {
                             cart.length > 0 ?
                                 <div className="table-responsive">
@@ -112,7 +112,7 @@ const CartPage = () => {
                                             }
                                         </tbody>
                                     </table>
-                                </div> : <div className="alert alert-warning d-flex align-items-center justify-content-center h-100">Your shopping cart is empty.</div>
+                                </div> : <div className="alert alert-warning d-flex align-items-center justify-content-center h-100 shadow-sm">Your shopping cart is empty.</div>
                         }
                     </div>
                 </div>

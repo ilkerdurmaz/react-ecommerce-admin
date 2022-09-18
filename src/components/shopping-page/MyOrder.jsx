@@ -18,7 +18,7 @@ const MyOrder = ({ order }) => {
     }
 
     return (
-        <div className='card my-2'>
+        <div className='card my-2 shadow-sm'>
 
             <div className='card-header d-flex justify-content-between'>
                 <span><span className='fw-bold'>Order Date:</span> {orderTime.toLocaleDateString('tr-TR')}</span>

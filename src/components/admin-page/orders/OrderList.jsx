@@ -35,7 +35,7 @@ export default class OrderList extends Component {
     render() {
         return (
             this.state.sortedOrders.length > 0 ?
-                <div className="container border rounded px-0">
+                <div className="container border rounded px-0 shadow-sm">
                     <div className="table-responsive">
                         <table className="table table-hover">
                             <thead>

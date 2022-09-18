@@ -67,8 +67,8 @@ const RatingModal = ({ show, handleClose, products, order }) => {
                                 <div className='d-flex flex-column align-items-center'>
                                     <Rating
                                         initialRating={ratingValue[index]}
-                                        emptySymbol={<AiOutlineStar />}
-                                        fullSymbol={<AiFillStar />}
+                                        emptySymbol={<AiOutlineStar size={18} />}
+                                        fullSymbol={<AiFillStar size={18} />}
                                         onChange={(value) => onChangeHandler(index, value)}
                                         readonly={disable[index]}
                                     />
