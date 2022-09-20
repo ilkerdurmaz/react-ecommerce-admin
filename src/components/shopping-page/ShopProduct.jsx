@@ -25,12 +25,12 @@ const ShopProduct = ({ product }) => {
     }
 
     return (
-        <div className="d-flex flex-column justify-content-between border rounded m-2 shadow-sm" style={{ width: "170px" }}>
+        <div className="d-flex flex-column justify-content-between border rounded m-2 shadow-sm bg-light" style={{ width: "170px" }}>
 
             <img src={product.imgUrl} className="img-fluid rounded p-1" alt={product.name} />
 
             <div className='d-flex flex-column p-2 border-top'>
-                <span className='fs-5'>{product.brand}</span>
+                <span className='fw-bold'>{product.brand}</span>
 
                 <NavLink to={`/${product.id}`} className={"text-decoration-none text-se"}><small>{product.name}</small></NavLink>
 

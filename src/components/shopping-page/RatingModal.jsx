@@ -49,7 +49,7 @@ const RatingModal = ({ show, handleClose, products, order }) => {
             <Modal.Header closeButton>
                 <Modal.Title>Rate Delivered Products</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='p-1'>
+            <Modal.Body className='p-1 px-2'>
                 {
                     products.map((product, index) => (
 

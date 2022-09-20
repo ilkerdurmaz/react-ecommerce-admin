@@ -34,7 +34,7 @@ export default class AddProductModal extends Component {
             category: e.target[5].value,
             stock: e.target[6].value,
             price: e.target[7].value,
-            rating: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }
+            rating: { ...this.props.selectedProduct.rating }
         }
         if (this.props.isUpdate)
             await updateProduct(productData, this.props.selectedProduct.id)

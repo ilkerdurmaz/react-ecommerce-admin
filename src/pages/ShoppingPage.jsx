@@ -56,16 +56,16 @@ const ShoppingPage = () => {
     }, [products])
 
     return (
-        <div className='mx-auto mt-3 p-0' style={{ maxWidth: '1280px' }}>
+        <div className='mx-auto mt-3 p-0' style={{ maxWidth: '960px' }}>
 
-            <div className='container border rounded shadow-sm'>
+            <div className='container border rounded shadow-sm bg-light'>
 
-                <div className="row">
-                    <div className="col-12 col-md-4 my-2 px-3 d-flex justify-content-center justify-content-md-start">
-                        <span className='fs-3'>Shopping Page</span>
+                <div className="row py-2">
+                    <div className="col-12 col-md-4 px-2 d-flex justify-content-center justify-content-md-start">
+                        <span className='fs-3 d-none d-md-block'>Shopping Page</span>
                     </div>
 
-                    <div className='col-12 col-md-8 my-2 px-3 d-flex justify-content-end'>
+                    <div className='col-12 col-md-8 px-2 d-flex justify-content-end'>
 
                         <div className='d-flex'>
                             <small>Filter By Category:</small>

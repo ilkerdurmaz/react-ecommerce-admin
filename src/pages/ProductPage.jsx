@@ -43,56 +43,55 @@ const ProductPage = () => {
 
     return (
         product ?
-            <div style={{ maxWidth: '720px', margin: "auto" }}>
-                <div className='container py-3'>
-                    <div className="row border rounded shadow-sm">
-                        <div className="col-12 col-md-7 p-2">
-                            <img src={product.imgUrl} className="img-fluid img-thumbnail" alt="..." />
-                        </div>
+            <div className='container py-3 mx-auto' style={{ maxWidth: '720px' }}>
+                <div className="row border rounded shadow-sm">
+                    <div className="col-12 col-md-7 p-2">
+                        <img src={product.imgUrl} className="img-fluid img-thumbnail" alt="..." />
+                    </div>
 
-                        <div className="col-12 col-md-5 px-3 px-md-2 d-flex flex-column justify-content-between">
+                    <div className="col-12 col-md-5 py-2 px-3 px-md-2 d-flex flex-column justify-content-between">
 
-                            <div>
-                                <div className='d-flex justify-content-between'>
-                                    <h5 className="fw-bold">{product.brand}</h5>
-                                    <Rating
-                                        emptySymbol={<AiOutlineStar size={18} />}
-                                        fullSymbol={<AiFillStar size={18} />}
-                                        readonly={true}
-                                        initialRating={calculateRating(product.rating)}
-                                    />
-                                </div>
-
-                                <p className="card-title">{product.name}</p>
-
-                                <p className="card-text"><small className="text-muted">{product.description}</small></p>
+                        <div>
+                            <div className='d-flex justify-content-between'>
+                                <h5 className="fw-bold">{product.brand}</h5>
+                                <Rating
+                                    emptySymbol={<AiOutlineStar size={18} />}
+                                    fullSymbol={<AiFillStar size={18} />}
+                                    readonly={true}
+                                    initialRating={calculateRating(product.rating)}
+                                />
                             </div>
 
-                            <form className='' onSubmit={addProductToCart}>
+                            <p className="card-title">{product.name}</p>
 
-                                <div className='row'>
+                            <p className="card-text"><small className="text-muted">{product.description}</small></p>
+                        </div>
 
-                                    <div className="col-12 col-sm-8 col-md-12 d-flex justify-content-between align-items-center p-2">
-                                        <p className="fs-5 fw-bold m-0">Price: ₺{product.price}</p>
+                        <form className='' onSubmit={addProductToCart}>
 
-                                        <div className="input-group input-group-sm shadow-sm" style={{ width: "6rem" }}>
-                                            <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count - 1)}>-</button>
+                            <div className='row'>
 
-                                            <input name="quantity" type="text" className="form-control form-control-sm text-center" value={count} onChange={(e) => setCount(e.target.value)} />
+                                <div className="col-12 col-sm-8 col-md-12 d-flex justify-content-between align-items-center p-2">
+                                    <p className="fs-5 fw-bold m-0">Price: ₺{product.price}</p>
 
-                                            <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count + 1)}>+</button>
-                                        </div>
-                                    </div>
+                                    <div className="input-group input-group-sm shadow-sm" style={{ width: "6rem" }}>
+                                        <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count - 1)}>-</button>
 
-                                    <div className="col-12 col-sm-4 col-md-12 d-flex p-2">
-                                        <button className='btn btn-dark bg-gradient w-100 p-1' type='submit'>Add To Cart</button>
+                                        <input name="quantity" type="text" className="form-control form-control-sm text-center" value={count} onChange={(e) => setCount(e.target.value)} />
+
+                                        <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={() => setCount(count + 1)}>+</button>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+
+                                <div className="col-12 col-sm-4 col-md-12 d-flex px-2">
+                                    <button className='btn btn-dark bg-gradient w-100 p-1' type='submit'>Add To Cart</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
             : <div className='d-flex justify-content-center'>
                 <div className="spinner-grow" style={{ width: "10rem", height: "10rem" }} role="status">
                     <span className="visually-hidden">Loading...</span>

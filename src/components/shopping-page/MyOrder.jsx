@@ -18,9 +18,9 @@ const MyOrder = ({ order }) => {
     }
 
     return (
-        <div className='card my-2 shadow-sm'>
+        <div className='card my-2 mx-1 shadow-sm'>
 
-            <div className='card-header d-flex justify-content-between'>
+            <div className='card-header d-flex justify-content-between px-2'>
                 <span><span className='fw-bold'>Order Date:</span> {orderTime.toLocaleDateString('tr-TR')}</span>
                 <span><span className='fw-bold'>Total Cost:</span> ₺{totalCost}</span>
             </div>
@@ -71,7 +71,7 @@ const MyOrder = ({ order }) => {
                 </div>
             </div>
 
-            <div className="card-footer d-flex justify-content-between align-items-center">
+            <div className="card-footer d-flex justify-content-between align-items-center px-2">
                 <span>
                     <span className='fw-bold me-1'>Order Status:</span>
                     <span className={order.data.status === "closed" ? 'text-success' : 'text-primary'}>

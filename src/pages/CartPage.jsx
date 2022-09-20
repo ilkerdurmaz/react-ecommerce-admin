@@ -66,14 +66,14 @@ const CartPage = () => {
                                 <h5 className="card-title">Order Summary</h5>
                             </div>
                             <div className="card-body">
-                                <p className="card-text">Total Cost: ₺{total}</p>
-                                <button className="btn w-100 btn-warning" onClick={placeOrderHandler}
+                                <p className="card-text"><span className='fw-bold'>Total Cost:</span> ₺{total}</p>
+                                <button className="btn w-100 btn-dark bg-gradient" onClick={placeOrderHandler}
                                     disabled={!(cart.length > 0)}>Place Order</button>
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-8 border rounded px-0 p-sm-2 shadow-sm">
+                    <div className="col-12 col-md-8 border rounded px-0 p-sm-2 shadow-sm bg-light">
                         {
                             cart.length > 0 ?
                                 <div className="table-responsive">
