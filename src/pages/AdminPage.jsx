@@ -44,7 +44,7 @@ const AdminPage = () => {
             </div>
 
             <div className='row'>
-                <div className='col p-2'>
+                <div className='col px-1 py-2'>
                     <Outlet />
                 </div>
             </div>

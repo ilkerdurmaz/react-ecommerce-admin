@@ -35,7 +35,7 @@ export default class TopSellingComp extends Component {
     render() {
         this.countSales()
         return (
-            <div className='border rounded mt-2 mb-1 overflow-auto shadow-sm' style={{ maxHeight: "357px" }}>
+            <div className='border rounded mt-2 mb-1 overflow-auto shadow-sm ' style={{ maxHeight: "357px" }}>
                 <div className='text-center'>
                     <span className='fs-4'>Top Selling Products</span>
                     <hr className='mx-3 my-1' />
@@ -46,7 +46,7 @@ export default class TopSellingComp extends Component {
                             <table className="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col" className='px-1'>#</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Category</th>
                                         <th scope="col" className='text-center'>Sales</th>
@@ -58,7 +58,7 @@ export default class TopSellingComp extends Component {
                                             if (product.count > 0)
                                                 return (
                                                     <tr key={product.id}>
-                                                        <th scope="row">{index + 1}</th>
+                                                        <th scope="row" className='px-1'>{index + 1}</th>
                                                         <td>{product.name}</td>
                                                         <td>{product.category}</td>
                                                         <td className='text-center'>{product.count}</td>

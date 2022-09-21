@@ -86,7 +86,7 @@ class ProductList extends Component {
                         isUpdate={this.state.isUpdate}
                     />
                 }
-                <div className="container border rounded mt-2 px-0 px-sm-2 shadow-sm">
+                <div className="container border rounded mt-2 px-0 px-sm-2 shadow-sm ">
                     <div className="table-responsive">
                         <div className='text-center text-muted'>
                             <small className='d-md-none'>Double click product to edit it's properties.</small>
@@ -107,7 +107,7 @@ class ProductList extends Component {
                                         this.filtered.map((product) => {
                                             return (
                                                 <tr key={product.id} onDoubleClick={() => this.handleUpdate(product)}>
-                                                    <td className='px-0 px-sm-2'><ProductImg width='50px' src={product.imgUrl} /></td>
+                                                    <td className='px-0 px-sm-2'><ProductImg src={product.imgUrl} className={'rounded border p-1'} style={{ objectFit: 'contain', width: '50px' }} /></td>
                                                     <td className='px-0 px-sm-2'><div className='d-flex flex-column small'><strong>{product.brand}</strong>{product.name}</div></td>
                                                     <td className='text-center px-1 px-sm-2'>{product.price}</td>
                                                     <td className='text-center px-1 px-sm-2'>{product.stock}</td>

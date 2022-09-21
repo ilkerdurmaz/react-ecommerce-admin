@@ -20,7 +20,7 @@ const MyOrder = ({ order }) => {
     return (
         <div className='card my-2 mx-1 shadow-sm'>
 
-            <div className='card-header d-flex justify-content-between px-2'>
+            <div className='card-header d-flex justify-content-between px-2-'>
                 <span><span className='fw-bold'>Order Date:</span> {orderTime.toLocaleDateString('tr-TR')}</span>
                 <span><span className='fw-bold'>Total Cost:</span> ₺{totalCost}</span>
             </div>
@@ -44,24 +44,28 @@ const MyOrder = ({ order }) => {
 
                                         items.map((item) => {
                                             const product = products.find(product => product.id === item.productId)
-                                            productList.push(product);
-                                            return (
-                                                <tr key={item.productId}>
-                                                    <td><ProductImg src={product.imgUrl} width={"64px"} /></td>
+                                            if (product) {
+                                                productList.push(product);
+                                                return (
+                                                    <tr key={item.productId}>
+                                                        <td>
+                                                            <ProductImg src={product.imgUrl} className={'rounded border p-1'} style={{ objectFit: 'contain', width: '64px' }} />
+                                                        </td>
 
-                                                    <td className='px-0'>
-                                                        <div className='d-flex flex-column'>
-                                                            <strong>{product.brand}</strong>
-                                                            <NavLink to={`/${product.id}`}>{product.name}</NavLink>
-                                                        </div>
-                                                    </td>
+                                                        <td className='px-0'>
+                                                            <div className='d-flex flex-column'>
+                                                                <strong>{product.brand}</strong>
+                                                                <NavLink className={'text-decoration-none'} to={`/${product.id}`}>{product.name}</NavLink>
+                                                            </div>
+                                                        </td>
 
-                                                    <td className='text-center'>{item.quantity}</td>
+                                                        <td className='text-center'>{item.quantity}</td>
 
-                                                    <td className='text-center'>₺{item.cost}</td>
+                                                        <td className='text-center'>₺{item.cost}</td>
 
-                                                </tr>
-                                            )
+                                                    </tr>
+                                                )
+                                            }
                                         })
                                     }
                                 </tbody>

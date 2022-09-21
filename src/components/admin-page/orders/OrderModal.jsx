@@ -46,18 +46,19 @@ class OrderModal extends Component {
                                             {
                                                 Object.values(this.props.order.data.items).map((item) => {
                                                     const product = this.props.productList.find(product => product.id === item.productId)
-                                                    return (
-                                                        <tr key={product.id}>
-                                                            <td className='px-1'><ProductImg src={product.imgUrl} width={'48px'} /></td>
+                                                    if (product)
+                                                        return (
+                                                            <tr key={product.id}>
+                                                                <td className='px-1'><ProductImg src={product.imgUrl} className={'rounded border p-1'} style={{ objectFit: 'contain', width: '48px' }} /></td>
 
-                                                            <td className='px-1'><div className='d-flex flex-column small'>
-                                                                <strong>{product.brand}</strong>
-                                                                <NavLink to={`/${product.id}`}>{product.name}</NavLink>
-                                                            </div></td>
-                                                            <td className='px-1 text-center'>{item.quantity}</td>
-                                                            <td className='px-1 text-center'>₺{item.cost}</td>
-                                                        </tr>
-                                                    )
+                                                                <td className='px-1'><div className='d-flex flex-column small'>
+                                                                    <strong>{product.brand}</strong>
+                                                                    <NavLink to={`/${product.id}`}>{product.name}</NavLink>
+                                                                </div></td>
+                                                                <td className='px-1 text-center'>{item.quantity}</td>
+                                                                <td className='px-1 text-center'>₺{item.cost}</td>
+                                                            </tr>
+                                                        )
                                                 })
                                             }
                                         </tbody>

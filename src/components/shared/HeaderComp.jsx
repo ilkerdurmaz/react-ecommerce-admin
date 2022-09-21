@@ -24,7 +24,9 @@ function Header() {
     return (
         <Navbar bg="dark" expand="md" variant="dark" className='shadow-sm bg-gradient' sticky="top">
             <Container className='p-0' style={{ maxWidth: '960px' }}>
-                <Navbar.Brand className='ms-1 me-auto'>React E-Commerce Project</Navbar.Brand>
+                <Navbar.Brand className='ms-1 me-auto fs-6 d-sm-none'><NavLink className='text-light text-decoration-none' to='/'>React E-Commerce Project</NavLink></Navbar.Brand>
+
+                <Navbar.Brand className='ms-1 me-auto fs-4 d-none d-sm-block'><NavLink className='text-light text-decoration-none' to='/'>React E-Commerce Project</NavLink></Navbar.Brand>
 
                 <div className='d-flex align-items-center'>
 
@@ -67,5 +69,6 @@ function Header() {
 }
 
 export default Header;
+
 
 

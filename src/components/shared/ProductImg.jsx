@@ -1,10 +1,10 @@
 import React from 'react'
 
-const ProductImg = ({ src, width = '100%', height = '100%', alt = "product image" }) => {
+const ProductImg = ({ src, alt = "product image", className, style }) => {
 
     return (
         <>
-            <img src={src ? src : 'https://dummyimage.com/400x400'} style={{ width: width, height: height }} alt={alt} className="img-fluid img-thumbnail" />
+            <img src={src ? src : 'https://dummyimage.com/400x400'} alt={alt} className={className} style={style} />
         </>
     )
 }

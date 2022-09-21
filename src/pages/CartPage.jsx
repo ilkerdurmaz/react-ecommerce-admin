@@ -4,10 +4,11 @@ import ProductImg from './../components/shared/ProductImg';
 import { NavLink } from 'react-router-dom'
 import { BsFillCartDashFill } from 'react-icons/bs'
 import { updateCart } from '../app/store/cart';
-import { placeOrder } from '../app/firebase';
+import { placeOrder, updateProduct } from '../app/firebase';
 import { useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
+    const products = useSelector(state => state.product.list)
     const cart = useSelector(state => state.cart.cart)
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0)
@@ -29,18 +30,22 @@ const CartPage = () => {
             status: "new",
             items: {}
         }
-        cart.forEach((item, index) => {
+        cart.forEach(async (item, index) => {
             order.items[index] = {
                 productId: item.id,
                 quantity: item.quantity,
                 cost: item.quantity * item.price,
                 category: item.category
             }
+            const tempProduct = products.find(product => product.id === item.id)
+            await updateProduct({ ...tempProduct, stock: tempProduct.stock - item.quantity }, tempProduct.id)
         })
+
         await placeOrder(order);
         navigate('/my-orders', {
             replace: true,
         })
+
     }
 
     const deleteFromCart = (id) => {
@@ -73,7 +78,7 @@ const CartPage = () => {
                         </div>
                     </div>
 
-                    <div className="col-12 col-md-8 border rounded px-0 p-sm-2 shadow-sm bg-light">
+                    <div className="col-12 col-md-8 border rounded px-0 p-sm-2 shadow-sm">
                         {
                             cart.length > 0 ?
                                 <div className="table-responsive">
@@ -93,10 +98,12 @@ const CartPage = () => {
                                                 cart.map((product) => {
                                                     return (
                                                         <tr key={product.id} >
-                                                            <td className='px-1 p-sm-2'><ProductImg width='50px' src={product.imgUrl} /></td>
-                                                            <td><div className='d-flex flex-column'>
+
+                                                            <td className='px-1 p-sm-2'><ProductImg src={product.imgUrl} className={'rounded border p-1'} style={{ objectFit: 'contain', width: '64px' }} /></td>
+
+                                                            <td><div className='d-flex flex-column small'>
                                                                 <strong>{product.brand}</strong>
-                                                                <NavLink to={`/${product.id}`}>{product.name}</NavLink>
+                                                                <NavLink to={`/${product.id}`} className={'text-decoration-none'}>{product.name}</NavLink>
                                                             </div></td>
                                                             <td>{product.price}</td>
                                                             <td className='text-center'>{product.quantity}</td>

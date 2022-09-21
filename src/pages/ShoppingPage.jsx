@@ -20,7 +20,7 @@ const ShoppingPage = () => {
         "Accessories",
         "Furniture",
         "Hobby and DIY",
-        "Healt & Beauty"
+        "Health & Beauty"
     ]
 
     function filter(e) {
@@ -56,9 +56,9 @@ const ShoppingPage = () => {
     }, [products])
 
     return (
-        <div className='mx-auto mt-3 p-0' style={{ maxWidth: '960px' }}>
+        <div className='mx-auto mt-2 mt-md-3' style={{ maxWidth: '960px' }}>
 
-            <div className='container border rounded shadow-sm bg-light'>
+            <div className='container border rounded shadow-sm'>
 
                 <div className="row py-2">
                     <div className="col-12 col-md-4 px-2 d-flex justify-content-center justify-content-md-start">

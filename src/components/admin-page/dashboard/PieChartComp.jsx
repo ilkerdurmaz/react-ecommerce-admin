@@ -24,7 +24,7 @@ export default class PieChartComp extends Component {
             "Accessories": 0,
             "Furniture": 0,
             "Hobby and DIY": 0,
-            "Healt & Beauty": 0,
+            "Health & Beauty": 0,
         }
 
         for (let i = 0; i < orders.length; i++) {
@@ -40,7 +40,6 @@ export default class PieChartComp extends Component {
 
         this.data = [
             ...sorted.map(cat => {
-
                 this.totalSale += this.categories[cat] || 0;
                 return {
                     name: cat,
@@ -53,7 +52,7 @@ export default class PieChartComp extends Component {
     render() {
         this.salesByCategories()
         return (
-            <div className='d-flex flex-column justify-content-center border rounded shadow-sm'>
+            <div className='d-flex flex-column justify-content-center border rounded shadow-sm '>
                 <div className='text-center'>
                     <span className='fs-4'>Sales By Categories</span>
                     <hr className='mx-3 my-1' />

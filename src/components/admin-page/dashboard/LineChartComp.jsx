@@ -47,7 +47,7 @@ export default class LineChartComp extends Component {
     render() {
         this.updateChart()
         return (
-            <div className='border rounded shadow-sm'>
+            <div className='border rounded shadow-sm '>
                 <div className='text-center'>
                     <span className='fs-4'>Sales</span>
                     <hr className='mx-3 my-1' />
