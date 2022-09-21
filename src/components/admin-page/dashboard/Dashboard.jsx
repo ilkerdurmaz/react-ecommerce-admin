@@ -35,7 +35,7 @@ class Dashboard extends Component {
             const dd = String(today.getDate()).padStart(2, '0');
             const mm = String(today.getMonth() + 1).padStart(2, '0');
             const yyyy = today.getFullYear();
-            const todaysMiliseconds = new Date(`${yyyy}-${mm}-${dd}`).getTime()
+            const todaysMiliseconds = new Date(`${yyyy}-${mm}-${dd}`).getTime() - 60 * 60 * 1000 * 3
             let todaysOrders = this.props.orderList.filter(o => o.data.timeStamp >= todaysMiliseconds)
             todaysOrders.sort((a, b) => a.data.timeStamp - b.data.timeStamp)
             this.setState({
