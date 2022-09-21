@@ -10,7 +10,7 @@ function App() {
   return (
     <div >
       <HeaderComp />
-      <Toaster position='bottom-center' />
+      <Toaster position='top-right' />
       <div>
         {showRoutes}
       </div>

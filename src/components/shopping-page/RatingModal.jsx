@@ -57,7 +57,7 @@ const RatingModal = ({ show, handleClose, products, order }) => {
                             <div className='d-flex align-items-center justify-content-between my-1'>
 
                                 <div className='d-flex align-items-center'>
-                                    <ProductImg src={product.imgUrl} width={"64px"} />
+                                    <ProductImg src={product.imgUrl} className={'rounded border p-1'} style={{ objectFit: 'contain', width: '64px' }} />
                                     <div className='d-flex flex-column ms-1 small'>
                                         <strong>{product.brand}</strong>
                                         {product.name}

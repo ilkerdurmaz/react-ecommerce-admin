@@ -31,12 +31,12 @@ export default class LineChartComp extends Component {
                 return {
                     totalCost: Object.values(order.items).reduce((totalCost, item) => totalCost + item.cost, 0),
                     quantity: Object.values(order.items).reduce((totalCost, item) => totalCost + item.quantity, 0),
-                    timeStamp: new Date(order.timeStamp).getHours() + ":" + new Date(order.timeStamp).getMinutes()
+                    timeStamp: this.props.type === "today" ? (String(new Date(order.timeStamp).getHours()).padStart(2, '0') + ":" + String(new Date(order.timeStamp).getMinutes()).padStart(2, '0')) : (String(new Date(order.timeStamp).getDate()).padStart(2, '0') + "-" + String(new Date(order.timeStamp).getMonth()).padStart(2, '0')) + "-" + new Date(order.timeStamp).getFullYear()
                 }
             })
         }
 
-        this.data = tempData.map(item => {
+        this.data = tempData.map((item, index) => {
             return {
                 "name": item.timeStamp,
                 "sale": item.totalCost
@@ -47,7 +47,7 @@ export default class LineChartComp extends Component {
     render() {
         this.updateChart()
         return (
-            <div className='border rounded shadow-sm '>
+            <div className='border rounded shadow-sm'>
                 <div className='text-center'>
                     <span className='fs-4'>Sales</span>
                     <hr className='mx-3 my-1' />
@@ -73,7 +73,7 @@ export default class LineChartComp extends Component {
 
                             </defs>
 
-                            <XAxis dataKey="name" />
+                            <XAxis dataKey="name" interval={2} padding={{ left: 32, right: 32 }} />
 
                             <Tooltip />
                             <Area type="monotone" dataKey="sale" stroke="#8884d8" fill="url(#colorUv)" />

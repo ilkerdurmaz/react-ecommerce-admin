@@ -86,11 +86,11 @@ const CartPage = () => {
                                         <thead>
                                             <tr>
                                                 <th scope="col" className='px-1 p-sm-2'>Image</th>
-                                                <th scope="col">Product</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col" className='text-center'>Quantity</th>
-                                                <th scope="col" className='px-1 p-sm-2'>Cost</th>
-                                                <th scope="col" className='text-center text-danger'>✘</th>
+                                                <th scope="col" className='px-1 p-sm-2'>Product</th>
+                                                <th scope="col" className='px-1 p-sm-2'>Price</th>
+                                                <th scope="col" className='text-center px-1 p-sm-2'>Quantity</th>
+                                                <th scope="col" className='text-center px-1 p-sm-2'>Cost</th>
+                                                <th scope="col" className='text-center text-danger px-1 p-sm-2'>✘</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -101,14 +101,14 @@ const CartPage = () => {
 
                                                             <td className='px-1 p-sm-2'><ProductImg src={product.imgUrl} className={'rounded border p-1'} style={{ objectFit: 'contain', width: '64px' }} /></td>
 
-                                                            <td><div className='d-flex flex-column small'>
+                                                            <td className='px-1 p-sm-2'><div className='d-flex flex-column small'>
                                                                 <strong>{product.brand}</strong>
                                                                 <NavLink to={`/${product.id}`} className={'text-decoration-none'}>{product.name}</NavLink>
                                                             </div></td>
-                                                            <td>{product.price}</td>
-                                                            <td className='text-center'>{product.quantity}</td>
-                                                            <td className='px-1 p-sm-2'>₺{product.quantity * product.price}</td>
-                                                            <td className='text-center'>
+                                                            <td className='px-1 p-sm-2'>{product.price}</td>
+                                                            <td className='text-center px-1 p-sm-2'>{product.quantity}</td>
+                                                            <td className='text-center px-1 p-sm-2'>₺{product.quantity * product.price}</td>
+                                                            <td className='text-center px-1 p-sm-2'>
                                                                 <button className='btn m-0 p-0' onClick={() => deleteFromCart(product.id)}>
                                                                     <BsFillCartDashFill size={24} />
                                                                 </button>
