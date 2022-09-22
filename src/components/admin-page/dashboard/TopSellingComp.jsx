@@ -35,7 +35,7 @@ export default class TopSellingComp extends Component {
     render() {
         this.countSales()
         return (
-            <div className='border rounded mt-2 mb-1 overflow-auto shadow-sm ' style={{ maxHeight: "357px" }}>
+            <div className='border rounded mt-2 mb-1 overflow-auto shadow-sm ' style={{ maxHeight: "377px" }}>
                 <div className='text-center'>
                     <span className='fs-4'>Top Selling Products</span>
                     <hr className='mx-3 my-1' />

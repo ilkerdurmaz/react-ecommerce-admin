@@ -52,7 +52,7 @@ export default class LineChartComp extends Component {
                     <span className='fs-4'>Sales</span>
                     <hr className='mx-3 my-1' />
                 </div>
-                <div style={{ width: '%100', height: '300px' }}>
+                <div style={{ width: '100%', height: '200px' }}>
                     <ResponsiveContainer>
                         <AreaChart
                             width={500}

@@ -57,7 +57,7 @@ export default class PieChartComp extends Component {
                     <span className='fs-4'>Sales By Categories</span>
                     <hr className='mx-3 my-1' />
                 </div>
-                <div style={{ width: '100%', height: '320px' }}>
+                <div style={{ width: '100%', height: '240px' }}>
                     <ResponsiveContainer width='100%' height="100%">
                         <PieChart>
                             <Pie

@@ -36,9 +36,11 @@ export default class OrderList extends Component {
         return (
             this.state.sortedOrders.length > 0 ?
                 <div className="container border rounded px-0 shadow-sm" >
-                    <div className="table-responsive">
-                        <table className="table table-hover caption-top">
-                            <caption className='px-2 pb-0 small text-sm-center'>Click order to see it's details and mark as "delivered".</caption>
+                    <div className='d-flex justify-content-center'>
+                        <span className='px-2 pb-0 small text-muted'>Click order to see it's details and mark as "delivered".</span>
+                    </div>
+                    <div className="table-responsive overflow-auto " style={{ maxHeight: '654px' }}>
+                        <table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col" className='pe-0 px-sm-auto'>Date</th>

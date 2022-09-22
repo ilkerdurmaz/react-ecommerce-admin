@@ -16,7 +16,7 @@ const AdminPage = () => {
     }
 
     return (
-        <div className='container mt-3 border rounded shadow' style={{ maxWidth: '1080px', margin: "auto" }}>
+        <div className='container mt-3 border rounded shadow' style={{ maxWidth: '960px', margin: "auto" }}>
 
             <div className='row'>
                 <div className='d-flex justify-content-between justify-content-sm-end align-items-center bg-dark bg-gradient text-white rounded-top px-2 py-2 ms-sm-auto'>

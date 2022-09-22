@@ -87,7 +87,7 @@ class ProductList extends Component {
                     />
                 }
                 <div className="container border rounded mt-2 px-0 px-sm-2 shadow-sm ">
-                    <div className="table-responsive">
+                    <div className="table-responsive" style={{ maxHeight: '620px' }}>
                         <div className='text-center text-muted'>
                             <small className='d-md-none'>Double click product to edit it's properties.</small>
                         </div>
