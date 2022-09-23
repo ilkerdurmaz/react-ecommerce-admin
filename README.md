@@ -1,6 +1,8 @@
 ## React-Redux E-Commerce Project
 This is a web application that demonstrates E-commerce website using React and Redux.
-The application has two different sections. The shopping pages that normal users view and the administration page that the administrator can view by logging in.
+The application has two different sections. The shopping pages that normal users view and the administration page that the administrator can view by logging in from /admin url.
+
+**You can log-in admin page with "admin@admin.com" and "123456" password in the DEMO**
 
 ## [DEMO](https://react-ecommerce-admin-5bm3.vercel.app/)
 
