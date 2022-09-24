@@ -56,14 +56,16 @@ const ProductPage = () => {
             <div className='container mx-auto py-md-3' style={{ maxWidth: '720px', maxHeight: '500px' }}>
                 <div className="row border rounded shadow-sm p-1">
                     <div className="col-12 col-md-7 p-0 d-flex justify-content-center border rounded">
-                        <ProductImg src={product.imgUrl} className={''} style={{ objectFit: 'contain', maxWidth: '100vw', height: '57vh' }} />
+                        <ProductImg src={product.imgUrl} className={''} style={{ objectFit: 'contain', maxWidth: 'inherit', height: 'inherit' }} />
                     </div>
 
                     <div className="col-12 col-md-5 p-0 d-flex flex-column justify-content-between p-3">
 
                         <div>
-                            <div className='d-flex justify-content-between'>
-                                <h5 className="fw-bold">{product.brand}</h5>
+                            <h5 className="fw-bold text-wrap text-break">{product.brand}</h5>
+                            <p className="card-title text-wrap text-break">{product.name}</p>
+                            <div className='my-2'>
+                                <span>Rating: </span>
                                 <Rating
                                     emptySymbol={<AiOutlineStar size={18} />}
                                     fullSymbol={<AiFillStar size={18} />}
@@ -72,10 +74,12 @@ const ProductPage = () => {
                                 />
                             </div>
 
-                            <p className="card-title">{product.name}</p>
+                            <p className="fs-5 fw-bold my-2">Price: ₺{product.price}</p>
 
-                            <p className="card-text"><small className="text-muted">{product.description}</small></p>
-                            <p className="fs-5 fw-bold m-0">Price: ₺{product.price}</p>
+                            <div className='my-2'>
+                                <span>Description:</span>
+                                <p className="card-text"><small className="text-muted">{product.description}</small></p>
+                            </div>
                         </div>
 
                         <form className='' onSubmit={addProductToCart}>

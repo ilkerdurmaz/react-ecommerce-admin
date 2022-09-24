@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 
 export default class TopSellingComp extends Component {
 
-
     productSellingCounts = []
-
 
     countSales() {
         if (this.props.products.length > 0) {
@@ -21,14 +19,18 @@ export default class TopSellingComp extends Component {
 
             const orders = this.props.orders.map(order => order.data)
 
-            for (let i = 0; i < orders.length; i++) {
-                for (let j = 0; j < Object.values(orders[i].items).length; j++) {
-                    const product = Object.values(orders[i].items)[j]
-                    const index = this.productSellingCounts.findIndex(item => item.id === product.productId)
-                    this.productSellingCounts[index].count += product.quantity
+            if (this.productSellingCounts.length > -1) {
+                for (let i = 0; i < orders.length; i++) {
+                    for (let j = 0; j < Object.values(orders[i].items).length; j++) {
+                        const product = Object.values(orders[i].items)[j]
+                        const index = this.productSellingCounts.findIndex(item => item.id === product.productId)
+
+                        if (index > -1)
+                            this.productSellingCounts[index].count += product.quantity
+                    }
                 }
+                this.productSellingCounts.sort((a, b) => b.count - a.count)
             }
-            this.productSellingCounts.sort((a, b) => b.count - a.count)
         }
     }
 

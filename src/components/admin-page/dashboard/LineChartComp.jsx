@@ -73,7 +73,7 @@ export default class LineChartComp extends Component {
 
                             </defs>
 
-                            <XAxis dataKey="name" interval={2} padding={{ left: 32, right: 32 }} />
+                            <XAxis dataKey="name" interval={2} padding={{ left: 48, right: 32 }}  style={{fontSize:'10px'}}/>
 
                             <Tooltip />
                             <Area type="monotone" dataKey="sale" stroke="#8884d8" fill="url(#colorUv)" />
