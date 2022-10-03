@@ -6,7 +6,7 @@ The application has two different sections. The shopping pages that normal users
 
 ## [DEMO](https://react-ecommerce-admin-5bm3.vercel.app/)
 
-### Admin Pages (Products, My Orders, Shopping Cart)
+### Shopping Pages (Products, My Orders, Shopping Cart)
 
 #### Products
 The application loads products from the Firestore database and displays them on "Products" page. On this page, users can filter products according to their categories, make various sorting and add them to the cart. In addition, as in many parts of the application, users can click on the name of the product and go to the product detail page.
